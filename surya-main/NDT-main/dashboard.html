@@ -1,0 +1,1863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Company Setup - Simco NDT Demo</title>
+  <link rel="stylesheet" href="style.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+  
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body class="dashboard-page">
+  <div class="app-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-top">
+        <div class="brand-wrap">
+          <img src="logo.png" alt="Logo" class="side-logo" />
+          <div class="brand-text">
+            <h3>NDT CERTIFICATION</h3>
+            <p>TRACKING</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-section-title">COMPANY</div>
+      <ul class="sidebar-menu">
+        <li><button class="menu-btn" data-menu="Dashboard"><i class="fa-solid fa-border-all"></i> Dashboard</button></li>
+        <li><button class="menu-btn active" data-menu="Company Setup"><i class="fa-regular fa-building"></i> Company Setup</button></li>
+        <li><button class="menu-btn" data-menu="Personnel"><i class="fa-regular fa-user"></i> Personnel</button></li>
+        <li><button class="menu-btn" data-menu="Department Master"><i class="fa-regular fa-building-columns"></i> Department Master</button></li>
+        <li><button class="menu-btn" data-menu="Certificates"><i class="fa-regular fa-id-badge"></i> Certificates</button></li>
+      </ul>
+
+      <div class="menu-section-title">ADMIN</div>
+      <ul class="sidebar-menu">
+        <li><button class="menu-btn" data-menu="Command Center"><i class="fa-solid fa-grip"></i> Command Center</button></li>
+        <li><button class="menu-btn" data-menu="Company Management"><i class="fa-regular fa-building"></i> Company Management</button></li>
+        <li><button class="menu-btn" data-menu="System Email Setup"><i class="fa-regular fa-envelope"></i> System Email Setup</button></li>
+        <li><button class="menu-btn" data-menu="User Management"><i class="fa-regular fa-user"></i> User Management</button></li>
+        <li><button class="menu-btn" data-menu="Role Management"><i class="fa-regular fa-gear"></i> Role Management</button></li>
+        <li><button class="menu-btn" data-menu="Notification Center"><i class="fa-regular fa-bell"></i> Notification Center</button></li>
+        <li><button class="menu-btn" data-menu="Log Viewer"><i class="fa-solid fa-wave-square"></i> Log Viewer</button></li>
+      </ul>
+    </aside>
+
+    <!-- Main -->
+    <main class="main-area">
+      <!-- Topbar -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="collapse-btn" id="collapseBtn">
+            <i class="fa-solid fa-angle-left"></i>
+          </button>
+         <h1 id="companyPageTitle">Company Setup </h1>
+        </div>
+
+        <div class="topbar-right">
+          <select id="companySwitch">
+            <option>Switch Company</option>
+            <option>pavan</option>
+            <option>surya</option>
+          </select>
+
+          <div class="profile-badge">
+            <span class="profile-circle">N</span>
+            <span>NDT</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="page-content" id="page-company-setup">
+        <!-- Tabs -->
+        <div class="tabs-card">
+          <button class="tab-btn active" data-tab="profile">
+            <i class="fa-regular fa-building"></i>
+            <span>Profile</span>
+          </button>
+          <button class="tab-btn" data-tab="documents">
+            <i class="fa-regular fa-file-lines"></i>
+            <span>Documents & Forms</span>
+          </button>
+          <button class="tab-btn" data-tab="methods">
+            <i class="fa-regular fa-sun"></i>
+            <span>Methods & Levels</span>
+          </button>
+          <button class="tab-btn" data-tab="exams">
+            <i class="fa-regular fa-award"></i>
+            <span>Exams</span>
+          </button>
+          <button class="tab-btn" data-tab="signatures">
+            <i class="fa-regular fa-pen-to-square"></i>
+            <span>Signatures</span>
+          </button>
+          <button class="tab-btn" data-tab="email">
+            <i class="fa-regular fa-envelope"></i>
+            <span>Email Setup</span>
+          </button>
+          <button class="tab-btn" data-tab="alerts">
+            <i class="fa-regular fa-bell"></i>
+            <span>Alerts</span>
+          </button>
+        </div>
+
+        <!-- Profile Tab -->
+        <section class="tab-content active" id="profile">
+          <div class="main-card">
+            <div class="profile-top">
+              <div class="profile-image-box">
+  <div class="company-logo-preview">
+    
+    <img src="logo.png" alt="Company Logo" id="companyLogoPreview"/>
+     
+  </div>
+
+  <input type="file" id="logoUpload" accept="image/*" hidden />
+  <button class="change-logo-btn" id="changeLogoBtn">
+    
+    <span>Change Logo</span>
+  </button>
+</div>
+              <div class="company-info-grid">
+                <div class="info-item">
+  <i class="fa-solid fa-location-dot"></i>
+  <div>
+    <small>Address</small>
+    <strong id="displayAddress">bengaluru</strong>
+  </div>
+</div>
+
+<div class="info-item">
+  <i class="fa-regular fa-envelope"></i>
+  <div>
+    <small>Primary Contact Email</small>
+    <strong id="displayEmail">Pallavi@simcondt.com</strong>
+  </div>
+</div>
+
+<div class="info-item">
+  <i class="fa-solid fa-phone"></i>
+  <div>
+    <small>Primary Contact Phone</small>
+    <strong id="displayPhone">N/A</strong>
+  </div>
+</div>
+              </div>
+
+              <div class="profile-edit-wrap">
+                <button class="outline-btn" id="editProfileBtn">
+                  <i class="fa-regular fa-pen-to-square"></i> Edit Profile
+                </button>
+              </div>
+            </div>
+
+            <div class="locations-card">
+              <div class="locations-header">
+                <div>
+                  <h2>Locations</h2>
+                  <p>Manage physical office and testing site locations.</p>
+                </div>
+                <button class="orange-btn" id="addLocationBtn">
+                  <i class="fa-solid fa-plus"></i> Add New
+                </button>
+              </div>
+
+              <div class="location-table">
+                <div class="table-head">
+                  <span>Name</span>
+                  <span>Address</span>
+                  <span>Actions</span>
+                </div>
+                <div class="table-body" id="locationList"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Other Tabs -->
+        <section class="tab-content" id="documents">
+  <div class="main-card">
+    <div class="documents-wrapper">
+      <div class="documents-header">
+        <h2>Documents & Forms</h2>
+        <p>Manage Company Documents and Forms</p>
+      </div>
+
+      <div class="documents-box">
+        <div class="documents-layout">
+
+          <!-- Left Folder Panel -->
+          <div class="folder-panel">
+            <div class="folder-panel-top">
+              <h3>Folders</h3>
+              <input type="text" id="folderSearch" placeholder="Search..." />
+            </div>
+
+            <div class="folder-list" id="folderList">
+              <button class="folder-item active" data-folder="Root">
+                <i class="fa-solid fa-folder"></i> Root
+              </button>
+            </div>
+          </div>
+
+          <!-- Right Content Panel -->
+          <div class="file-panel">
+            <div class="file-panel-top">
+              <strong id="currentFolderTitle">Root</strong>
+
+              <div class="file-toolbar">
+                <button class="toolbar-btn" id="listViewBtn" title="List View">
+                  <i class="fa-solid fa-list"></i>
+                </button>
+
+                <button class="toolbar-btn" id="gridViewBtn" title="Grid View">
+                  <i class="fa-solid fa-border-all"></i>
+                </button>
+
+                <button class="toolbar-btn" id="newFolderBtn" title="New Folder">
+                  <i class="fa-regular fa-folder-open"></i>
+                </button>
+
+                <button class="toolbar-btn active orange-tool" id="newFileBtn" title="New File">
+                  <i class="fa-regular fa-file"></i>
+                </button>
+
+                <button class="toolbar-btn" id="uploadBtn" title="Upload">
+                  <i class="fa-solid fa-folder-plus"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="file-panel-body" id="filePanelBody">
+              <div class="empty-folder" id="emptyFolderState">
+                <i class="fa-regular fa-folder-open"></i>
+                <h3>This folder is empty</h3>
+                <p>
+                  Folders and files can be dragged and dropped here specifically for the selected folder.
+                </p>
+                <small>(Max size: 100MB)</small>
+              </div>
+
+              <div class="file-items list-view" id="fileItems" style="display:none;"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+        <section class="tab-content" id="methods">
+  <div class="main-card">
+    <div class="methods-wrapper">
+      <div class="methods-header">
+        <div>
+          <h2>Methods & Levels</h2>
+          <p>Define NDT methods and their associated certification levels.</p>
+        </div>
+
+        <button class="orange-btn" id="addMethodBtn">
+          <i class="fa-solid fa-plus"></i> Add New Method
+        </button>
+      </div>
+
+      <div class="methods-filter-box">
+        <div class="methods-filter-grid">
+          <div class="methods-filter-item">
+            <label for="methodNameSearch">Method Name</label>
+            <input type="text" id="methodNameSearch" placeholder="Search by name..." />
+          </div>
+
+          <div class="methods-filter-item">
+            <label for="techniqueSearch">Technique</label>
+            <input type="text" id="techniqueSearch" placeholder="Search by technique..." />
+          </div>
+
+          <div class="methods-filter-item">
+            <label for="levelSearch">Level</label>
+            <input type="text" id="levelSearch" placeholder="Search by level..." />
+          </div>
+        </div>
+      </div>
+
+      <div class="methods-table-wrap">
+        <div class="methods-table-head">
+          <span>Method Name</span>
+          <span>Technique</span>
+          <span>Abbreviation</span>
+          <span>Available Levels</span>
+          <span>Actions</span>
+        </div>
+
+        <div class="methods-table-body" id="methodsTableBody">
+          <div class="empty-row">No methods found.</div>
+        </div>
+      </div>
+
+      <div class="methods-footer">
+        <div class="methods-footer-left">
+          <span id="methodsCountText">Showing 1 to 0 of 0 results</span>
+
+          <label for="showCountSelect">Show:</label>
+          <select id="showCountSelect">
+            <option selected>10</option>
+            <option>25</option>
+            <option>50</option>
+          </select>
+        </div>
+
+        <div class="methods-footer-right">
+          <button class="pagination-btn" id="prevMethodBtn">
+            <i class="fa-solid fa-angle-left"></i> Previous
+          </button>
+          <button class="pagination-btn" id="nextMethodBtn">
+            Next <i class="fa-solid fa-angle-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+        <section class="tab-content" id="exams">
+  <div class="main-card">
+    <div class="exams-wrapper">
+      <div class="exams-inner-card">
+        <div class="exams-header">
+          <div>
+            <h2>Exam Types</h2>
+            <p>Define exam types and their scoring eligibility.</p>
+          </div>
+
+          <button class="orange-btn" id="addExamBtn">
+            <i class="fa-solid fa-plus"></i> Add New
+          </button>
+        </div>
+
+        <div class="exams-table-wrap">
+          <div class="exams-table-head">
+            <span>Name</span>
+            <span>Pass Marks (%)</span>
+            <span>Scoring Details</span>
+            <span>Actions</span>
+          </div>
+
+          <div class="exams-table-body" id="examsTableBody">
+            <div class="empty-row">No exam types found.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+        <section class="tab-content" id="signatures">
+  <div class="main-card">
+    <div class="signatures-wrapper">
+      <div class="signatures-inner-card">
+        <div class="signatures-header">
+          <div>
+            <h2>Authorized Signatures</h2>
+            <p>Manage authorized signatures for document verification.</p>
+          </div>
+
+          <button class="orange-btn" id="addSignatureBtn">
+            <i class="fa-solid fa-plus"></i> Add New
+          </button>
+        </div>
+
+        <div class="signatures-table-wrap">
+          <div class="signatures-table-head">
+            <span>Name</span>
+            <span>Examiner Level</span>
+            <span>Signature</span>
+            <span>Actions</span>
+          </div>
+
+          <div class="signatures-table-body" id="signaturesTableBody">
+            <div class="empty-row">No signatures found.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+        <section class="tab-content" id="email">
+  <div class="main-card">
+    <div class="email-setup-wrapper">
+      <div class="email-setup-card">
+        <div class="email-setup-head">
+          <div class="email-setup-title">
+            <i class="fa-regular fa-envelope"></i>
+            <div>
+              <h2>Email SMTP Setup</h2>
+              <p>Configure your company's email server settings for sending notifications.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="email-setup-body">
+          <div class="email-form-block">
+            <label class="email-label">Authentication Method</label>
+
+            <div class="auth-tabs">
+              <button type="button" class="auth-tab-btn active" data-auth="basic">Basic SMTP (Quickest)</button>
+              <button type="button" class="auth-tab-btn" data-auth="oauth2">OAuth2 SMTP</button>
+              <button type="button" class="auth-tab-btn" data-auth="graph">Graph API (Bypass SMTP)</button>
+            </div>
+
+            <p class="auth-help-text" id="authHelpText">
+              Works for most providers. For Office 365/Gmail, you'll need an 'App Password'.
+            </p>
+          </div>
+
+          <div class="email-form-grid">
+            <div class="email-form-block">
+              <label class="email-label" for="smtpHost">
+                <i class="fa-solid fa-server"></i> SMTP Host
+              </label>
+              <input type="text" id="smtpHost" placeholder="e.g. smtp.office365.com" />
+            </div>
+
+            <div class="email-form-block">
+              <label class="email-label" for="smtpPort"></label>
+              <input type="number" id="smtpPort" value="587" />
+            </div>
+
+            <div class="email-form-block">
+              <label class="email-label" for="smtpUsername">
+                <i class="fa-regular fa-envelope"></i> Email Address (Username)
+              </label>
+              <input type="email" id="smtpUsername" value=" " />
+            </div>
+
+            <div class="email-form-block">
+              <label class="email-label" for="smtpPassword">
+                <i class="fa-solid fa-key"></i> Password / App Password
+              </label>
+              <input type="password" id="smtpPassword" value=" " />
+              <p class="field-help-text">
+                For Office 365/Gmail, use an App Password if MFA is on.
+              </p>
+            </div>
+
+            <div class="email-form-block">
+              <label class="email-label" for="fromEmail">From Email (Display)</label>
+              <input type="email" id="fromEmail" placeholder="notifications@yourcompany.com" />
+            </div>
+
+            <div class="email-form-block">
+              <label class="email-label" for="fromName">From Name (Display)</label>
+              <input type="text" id="fromName" value="NDT Notifications" />
+            </div>
+          </div>
+
+          <div class="ssl-box">
+            <label class="ssl-label">
+              <input type="checkbox" id="useSslTls" />
+              <span>Use SSL/TLS (Port 465)</span>
+            </label>
+          </div>
+
+          <p class="field-help-text ssl-help">
+            Leave unchecked for Port 587 (STARTTLS).
+          </p>
+
+          <div class="verify-email-box">
+            <div class="verify-email-title">
+              <i class="fa-regular fa-envelope"></i>
+              <h3>Verify Email Delivery</h3>
+            </div>
+
+            <div class="email-form-block">
+              <label class="email-label small-label" for="testRecipientEmail">Recipient Email for Test</label>
+
+              <div class="verify-row">
+                <input
+                  type="email"
+                  id="testRecipientEmail"
+                  placeholder="Enter email to receive test message"
+                />
+                <button type="button" class="verify-btn" id="sendTestBtn">
+                  <i class="fa-regular fa-envelope"></i> Send Test Email
+                </button>
+              </div>
+
+              <p class="field-help-text">
+                This will send a real test email using the settings configured above (even if unsaved).
+              </p>
+            </div>
+          </div>
+
+          <div class="email-bottom-actions">
+            <button type="button" class="outline-email-btn" id="testConnectionBtn">
+              <i class="fa-solid fa-server"></i> Test Connection
+            </button>
+
+            <button type="button" class="orange-btn email-save-config-btn" id="saveEmailBtn">
+              <i class="fa-regular fa-floppy-disk"></i> Save Configuration
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+        <section class="tab-content" id="alerts">
+  <div class="main-card">
+    <div class="alerts-wrapper">
+      <div class="alerts-card">
+        <div class="alerts-header">
+          <div class="alerts-title">
+            <i class="fa-regular fa-bell"></i>
+            <div>
+              <h2>Automated Alerts</h2>
+              <p>Configure automated email reminders based on certification and eye exam expiries.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="alerts-body">
+          <div class="schedule-box">
+            <div class="schedule-title">
+              <i class="fa-regular fa-clock"></i>
+              <h3>Daily Check Schedule</h3>
+            </div>
+
+            <div class="schedule-row">
+              <div class="schedule-input-wrap">
+                <label for="dailyCheckTime">Run daily at</label>
+                <div class="time-input-box">
+                  <input type="time" id="dailyCheckTime" value="01:00" />
+                  <i class="fa-regular fa-clock"></i>
+                </div>
+              </div>
+
+              <button type="button" class="orange-btn schedule-btn" id="updateScheduleBtn">
+                <i class="fa-regular fa-floppy-disk"></i> Update Schedule
+              </button>
+            </div>
+
+            <p class="schedule-help-text">
+              <i class="fa-regular fa-clock"></i>
+              The system will check for expiring items once every 24 hours at the specified time.
+            </p>
+          </div>
+
+          <div class="alerts-template-header">
+            <div>
+              <h3>Email Alerts & Templates</h3>
+            </div>
+
+            <button type="button" class="orange-btn" id="addAlertTemplateBtn">
+              <i class="fa-solid fa-plus"></i> Add New Template
+            </button>
+          </div>
+
+          <div class="alerts-table-wrap">
+            <div class="alerts-table-head">
+              <span>Template Type</span>
+              <span>Milestone</span>
+              <span>Recipients</span>
+              <span>Subject</span>
+              <span>Actions</span>
+            </div>
+
+            <div class="alerts-table-body" id="alertsTableBody">
+              <div class="alerts-empty-state">
+                <i class="fa-regular fa-bell"></i>
+                <p>No automated alerts configured yet.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+        <div class="support-box">
+          <i class="fa-regular fa-envelope"></i>
+          <span>For assistance, please email <b>support@sharpnde.com</b></span>
+        </div>
+      </div> <!-- end page-company-setup -->
+
+      <!-- Company Management View -->
+      <div class="page-content" id="page-company-management" style="display: none;">
+        <div class="top-actions" style="display: flex; justify-content: space-between; margin-bottom: 24px;">
+            <button id="add-btn" class="orange-btn"><i class='fa-solid fa-plus'></i> New Company</button>
+            <button id="filter-btn" class="outline-btn"><i class='fa-solid fa-filter'></i> Filters</button>
+        </div>
+
+        <div class="filter-bar" id="filter-box" style="display: none; background: white; border: 1px solid var(--border-light); border-radius: 12px; padding: 20px; gap: 24px; margin-bottom: 24px; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);">
+            <div class="filter-item" style="flex: 1; display: flex; flex-direction: column; gap: 8px;">
+                <label style="font-size: 12px; font-weight: 600; color: #4B5563;">Company</label>
+                <input type="text" id="filter-company" placeholder="Name..." style="padding: 10px 14px; border: 1px solid var(--border-light); border-radius: 8px; font-size: 14px; outline: none; background: #F8FAFC;">
+            </div>
+            <div class="filter-item" style="flex: 1; display: flex; flex-direction: column; gap: 8px;">
+                <label style="font-size: 12px; font-weight: 600; color: #4B5563;">Email</label>
+                <input type="text" id="filter-email" placeholder="Contact..." style="padding: 10px 14px; border: 1px solid var(--border-light); border-radius: 8px; font-size: 14px; outline: none; background: #F8FAFC;">
+            </div>
+            <div class="filter-item" style="flex: 1; display: flex; flex-direction: column; gap: 8px;">
+                <label style="font-size: 12px; font-weight: 600; color: #4B5563;">Valid Till</label>
+                <input type="text" id="filter-date" placeholder="Expiry date" style="padding: 10px 14px; border: 1px solid var(--border-light); border-radius: 8px; font-size: 14px; outline: none; background: #F8FAFC;">
+            </div>
+            <div class="filter-item" style="flex: 1; display: flex; flex-direction: column; gap: 8px;">
+                <label style="font-size: 12px; font-weight: 600; color: #4B5563;">Status</label>
+                <select id="filter-status" style="padding: 10px 14px; border: 1px solid var(--border-light); border-radius: 8px; font-size: 14px; outline: none; background: #F8FAFC;">
+                    <option value="All">All</option>
+                    <option value="Active">Active</option>
+                    <option value="Inactive">Inactive</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="table-container management-table-container">
+            <table id="comp-table" class="management-table">
+                <thead>
+                    <tr>
+                        <th>Company</th>
+                        <th>Contact Email</th>
+                        <th>Address</th>
+                        <th>Start Date</th>
+                        <th>Valid Till</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Dynamic rows will go here via JS -->
+                </tbody>
+            </table>
+        </div>
+      </div>
+      <!-- Personnel View -->
+      <div class="page-content" id="page-personnel" style="display: none;">
+        <div class="split-view">
+          <!-- Left Panel -->
+          <div class="list-panel card">
+            <div class="list-header">
+              <h2>Personnel</h2>
+              <div class="list-actions">
+                <button class="icon-btn"><i class="ph ph-funnel"></i></button>
+                <button class="primary-btn" id="btnAddTop"><i class="ph ph-plus"></i> Add</button>
+              </div>
+            </div>
+
+            <div class="personnel-list" id="personnelList">
+              <!-- Rendered via JS -->
+            </div>
+
+            <div class="pagination">
+              <select class="page-size">
+                <option>20 / pg</option>
+              </select>
+              <div class="page-controls">
+                <button class="icon-btn-small" disabled><i class="ph ph-caret-left"></i></button>
+                <span>1 of 1</span>
+                <button class="icon-btn-small" disabled><i class="ph ph-caret-right"></i></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Panel -->
+          <div class="detail-panel">
+            <div class="detail-card card top-info">
+              <div class="profile-header">
+                <div class="profile-identity">
+                  <div class="avatar-large" id="detailAvatar">DG</div>
+                  <div class="profile-name-group">
+                    <h2 id="detailName">dharani gedela</h2>
+                    <span id="detailDept">No Department</span>
+                  </div>
+                </div>
+                <div class="profile-actions">
+                  <button class="secondary-btn"><i class="ph ph-envelope-simple"></i> Send Message</button>
+                  <button class="secondary-btn"><i class="ph ph-certificate"></i> Generate Certificate</button>
+                </div>
+              </div>
+
+              <div class="tabs">
+                <button class="tab-btn active" data-tab="personal">Personal Info</button>
+                <button class="tab-btn" data-tab="education">Education & Qualifications</button>
+                <button class="tab-btn" data-tab="training">Training Records</button>
+                <button class="tab-btn" data-tab="visual">Visual Acuity Records</button>
+                <button class="tab-btn" data-tab="ojt">OJT</button>
+                <button class="tab-btn" data-tab="certifications">Certifications</button>
+                <button class="tab-btn" data-tab="documents">Documents</button>
+              </div>
+            </div>
+
+            <div class="detail-card card content-info">
+              <div class="content-header">
+                <h3 id="tabContentTitle">Personal Information</h3>
+                <button class="secondary-btn-small" id="btnEdit"><i class="ph ph-pencil-simple"></i> Edit</button>
+              </div>
+
+              <!-- Tab Content: Personal -->
+              <div class="tab-content active" id="tab-personal">
+                <div class="info-grid">
+                  <div class="info-group">
+                    <label>First Name</label>
+                    <div class="info-val" id="infoFirstName">-</div>
+                  </div>
+                  <div class="info-group">
+                    <label>Last Name</label>
+                    <div class="info-val" id="infoLastName">-</div>
+                  </div>
+                  <div class="info-group">
+                    <label>Full Name</label>
+                    <div class="info-val" id="infoFullName">-</div>
+                  </div>
+
+                  <div class="info-group">
+                    <label>Employee ID</label>
+                    <div class="info-val" id="infoEmpId">-</div>
+                  </div>
+                  <div class="info-group">
+                    <label>Email</label>
+                    <div class="info-val" id="infoEmail">-</div>
+                  </div>
+                  <div class="info-group">
+                    <label>Phone</label>
+                    <div class="info-val" id="infoPhone">-</div>
+                  </div>
+
+                  <div class="info-group">
+                    <label>Department</label>
+                    <div class="info-val" id="infoDepartmentDesc">-</div>
+                  </div>
+                  <div class="info-group">
+                    <label>Location</label>
+                    <div class="info-val" id="infoLocation">-</div>
+                  </div>
+                  <div class="info-group">
+                    <label>Supervisor</label>
+                    <div class="info-val" id="infoSupervisor">-</div>
+                  </div>
+
+                  <div class="info-group">
+                    <label>Status</label>
+                    <div class="info-val"><span class="status-badge" id="infoStatus">Active</span></div>
+                  </div>
+                  <div class="info-group col-span-2">
+                    <label>Address</label>
+                    <div class="info-val" id="infoAddress">-</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Generic Tab Contents for demonstration -->
+              <div class="tab-content hidden" id="tab-education">
+                <div class="sub-tabs">
+                  <button class="sub-tab-btn active" data-subtab="edu-list">Education</button>
+                  <button class="sub-tab-btn" data-subtab="job-history">Job History</button>
+                  <button class="sub-tab-btn" data-subtab="method-exp">Method Experience</button>
+                  <button class="sub-tab-btn" data-subtab="resume">Resume</button>
+                </div>
+
+                <!-- Education List -->
+                <div class="sub-tab-content active" id="subtab-edu-list">
+                  <div class="content-header">
+                    <h3>Education</h3>
+                    <button class="primary-btn-pill" onclick="openEducationModal()"><i class="ph ph-plus"></i>
+                      Add</button>
+                  </div>
+                  <div class="data-table-container">
+                    <table class="data-table">
+                      <thead>
+                        <tr>
+                          <th>Diploma/Degree</th>
+                          <th>School</th>
+                          <th>Year</th>
+                          <th>Doc</th>
+                          <th style="text-align: right;">Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody id="eduTableBody">
+                        <tr>
+                          <td colspan="5" class="empty-state">No education records found.</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <!-- Job History -->
+                <div class="sub-tab-content hidden" id="subtab-job-history">
+                  <div class="content-header">
+                    <h3>Job History</h3>
+                    <button class="primary-btn-pill" onclick="openJobHistoryModal()"><i class="ph ph-plus"></i>
+                      Add</button>
+                  </div>
+                  <div class="data-table-container">
+                    <table class="data-table">
+                      <thead>
+                        <tr>
+                          <th>Company</th>
+                          <th>Position</th>
+                          <th>Dates</th>
+                          <th>Doc</th>
+                          <th style="text-align: right;">Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody id="jhTableBody">
+                        <tr>
+                          <td colspan="5" class="empty-state">No job history found.</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <!-- Method Experience -->
+                <div class="sub-tab-content hidden" id="subtab-method-exp">
+                  <div class="content-header">
+                    <h3>Method Experience</h3>
+                    <button class="primary-btn-pill" onclick="openExperienceModal()"><i class="ph ph-plus"></i>
+                      Add</button>
+                  </div>
+                  <div class="data-table-container">
+                    <table class="data-table">
+                      <thead>
+                        <tr>
+                          <th>Method</th>
+                          <th>Hours</th>
+                          <th style="text-align: right;">Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody id="expTableBody">
+                        <tr>
+                          <td colspan="3" class="empty-state">No experience records found.</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <!-- Resume -->
+                <div class="sub-tab-content hidden" id="subtab-resume">
+                  <div style="text-align: center; margin-bottom: 24px; margin-top: 16px;">
+                    <span class="hint" style="color: #6b7280; font-size: 14px;">Upload resumes or other qualification
+                      documents (PDF, DOCX, JPG, PNG, BMP).</span>
+                  </div>
+                  <div class="file-explorer-container" style="margin-top: 0;">
+                    <div class="explorer-sidebar">
+                      <div class="explorer-sidebar-header">
+                        <span>Folders</span>
+                        <div class="search-input-small">
+                          <input type="text" placeholder="Search...">
+                        </div>
+                      </div>
+                      <div class="folder-tree">
+                        <div class="folder-item active"><i class="ph-fill ph-folder" style="color: #3b82f6;"></i> Root
+                        </div>
+                      </div>
+                    </div>
+                    <div class="explorer-main">
+                      <div class="explorer-toolbar">
+                        <strong>Root</strong>
+                        <div class="toolbar-actions" style="display: flex; gap: 8px; align-items: center;">
+                          <button class="icon-btn-small"
+                            style="border: 1px solid var(--border-color); border-radius: 4px; padding: 4px; background: transparent;"><i
+                              class="ph ph-list-dashes"></i></button>
+                          <button class="icon-btn-small"
+                            style="border: 1px solid var(--border-color); border-radius: 4px; padding: 4px; background: transparent;"><i
+                              class="ph ph-squares-four"></i></button>
+
+                          <!-- File Upload trigger -->
+                          <input type="file" id="resumeFileInput" class="hidden">
+                          <button class="primary-icon-btn"
+                            onclick="document.getElementById('resumeFileInput').click()"><i
+                              class="ph ph-file-plus"></i></button>
+
+                          <button class="icon-btn-small"
+                            style="border: 1px solid var(--border-color); border-radius: 4px; padding: 4px; background: transparent;"><i
+                              class="ph ph-folder-plus" style="color: #3b82f6;"></i></button>
+                        </div>
+                      </div>
+                      <div class="explorer-body">
+                        <div class="empty-folder">
+                          <i class="ph ph-folder" style="font-size: 48px; color: #d1d5db; margin-bottom: 8px;"></i>
+                          <p style="font-weight: 600; color: #4b5563;">This folder is empty</p>
+                          <span class="hint"
+                            style="display: block; margin-top: 6px; color: #9ca3af; font-size: 13px; line-height: 1.4;">Folders
+                            and files can be dragged and dropped here specifically for the selected folder.<br>(Max
+                            size: 100MB)</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Training Records Tab Content -->
+              <div class="tab-content hidden" id="tab-training">
+                <div class="content-header">
+                  <h3>Training Records</h3>
+                  <button class="primary-btn-pill" onclick="openTrainingModal()"><i class="ph ph-plus"></i> Add
+                    Training</button>
+                </div>
+                <div class="data-table-container">
+                  <table class="data-table">
+                    <thead>
+                      <tr>
+                        <th>Method / Level</th>
+                        <th>Type</th>
+                        <th>Date</th>
+                        <th>Hrs</th>
+                        <th>Provider</th>
+                        <th>Doc</th>
+                        <th style="text-align: right;">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td colspan="7" class="empty-state">No training records found.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <!-- Visual Acuity Records Tab Content -->
+              <div class="tab-content hidden" id="tab-visual">
+                <div class="content-header">
+                  <h3>Eye Exams</h3>
+                  <button class="primary-btn-pill"><i class="ph ph-plus"></i> Add</button>
+                </div>
+                <div class="data-table-container">
+                  <table class="data-table">
+                    <thead>
+                      <tr>
+                        <th>Exam Date</th>
+                        <th>Valid Till</th>
+                        <th>Examiner</th>
+                        <th>Result</th>
+                        <th>Certificate</th>
+                        <th>Status</th>
+                        <th style="text-align: right;">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td colspan="7" class="empty-state">No eye exams recorded.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <!-- OJT Tab Content -->
+              <div class="tab-content hidden" id="tab-ojt">
+                <div class="resume-header-top" style="margin-bottom: 16px; margin-top: 8px;">
+                  <span class="hint"
+                    style="color: #f97316; display: flex; align-items: center; gap: 6px; font-weight: 500;">
+                    <i class="ph ph-upload-simple"></i> Folders and files can be dragged and dropped here specifically
+                    for the selected folder. (Max size: 100MB)
+                  </span>
+                </div>
+                <div class="file-explorer-container" style="margin-top: 0;">
+                  <div class="explorer-sidebar">
+                    <div class="explorer-sidebar-header">
+                      <span>Folders</span>
+                      <div class="search-input-small">
+                        <input type="text" placeholder="Search...">
+                      </div>
+                    </div>
+                    <div class="folder-tree">
+                      <div class="folder-item active"><i class="ph-fill ph-folder" style="color: #3b82f6;"></i> Root
+                      </div>
+                    </div>
+                  </div>
+                  <div class="explorer-main">
+                    <div class="explorer-toolbar">
+                      <strong>Root</strong>
+                      <div class="toolbar-actions">
+                        <button class="icon-btn-small"
+                          style="border: 1px solid var(--border-color); border-radius: 4px; padding: 4px;"><i
+                            class="ph ph-list-dashes"></i></button>
+                        <button class="icon-btn-small"
+                          style="border: 1px solid var(--border-color); border-radius: 4px; padding: 4px;"><i
+                            class="ph ph-squares-four"></i></button>
+                        <button class="primary-btn-pill" style="border-radius: 4px; height: 28px; padding: 0 12px;"><i
+                            class="ph ph-file-text"></i> Create OJT Log</button>
+                        <button class="icon-btn-small"
+                          style="border: 1px solid var(--border-color); border-radius: 4px; padding: 4px;"><i
+                            class="ph ph-file-plus"></i></button>
+                        <button class="primary-icon-btn"><i class="ph ph-folder-plus"></i></button>
+                        <button class="icon-btn-small"
+                          style="border: 1px solid var(--border-color); border-radius: 4px; padding: 4px; background: #f3f4f6;"><i
+                            class="ph ph-archive-box"></i></button>
+                      </div>
+                    </div>
+                    <div class="explorer-body">
+                      <div class="empty-folder">
+                        <i class="ph ph-folder" style="font-size: 48px; color: #d1d5db; margin-bottom: 8px;"></i>
+                        <p>This folder is empty</p>
+                        <span class="hint"
+                          style="display: block; margin-top: 6px; color: #9ca3af; font-size: 13px; line-height: 1.4;">Folders
+                          and files can be dragged and dropped here specifically for the selected folder.<br>(Max size:
+                          100MB)</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Certifications Tab Content -->
+              <div class="tab-content hidden" id="tab-certifications">
+                <div class="content-header" style="align-items: center;">
+                  <h3>Certifications</h3>
+                  <div style="display: flex; gap: 12px; align-items: center;">
+                    <div style="position: relative;">
+                      <i class="ph ph-magnifying-glass"
+                        style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #9ca3af;"></i>
+                      <input type="text" placeholder="Search method/level..."
+                        style="padding: 6px 12px 6px 36px; border: 1px solid var(--border-color); border-radius: 20px; font-size: 13px; outline: none; width: 180px; color: var(--text-main);">
+                    </div>
+                    <div
+                      style="display: flex; border: 1px solid var(--border-color); border-radius: 20px; overflow: hidden; background: white;">
+                      <button
+                        style="padding: 6px 12px; border: none; background: transparent; font-size: 13px; display: flex; align-items: center; gap: 6px; cursor: pointer; border-right: 1px solid var(--border-color); color: var(--text-muted);"><i
+                          class="ph ph-list-dashes"></i> Card</button>
+                      <button
+                        style="padding: 6px 12px; border: none; background: transparent; font-size: 13px; display: flex; align-items: center; gap: 6px; cursor: pointer; color: var(--text-main); font-weight: 600;"><i
+                          class="ph ph-squares-four"></i> Grid</button>
+                    </div>
+                    <button class="primary-btn-pill"><i class="ph ph-plus"></i> Add Certification</button>
+                  </div>
+                </div>
+                <div class="data-table-container">
+                  <table class="data-table">
+                    <thead>
+                      <tr>
+                        <th>Method - Level</th>
+                        <th>Valid Till</th>
+                        <th>Composite</th>
+                        <th>Status</th>
+                        <th>Doc</th>
+                        <th>Cert</th>
+                        <th style="text-align: right;">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td colspan="7" class="empty-state">No certifications found.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <!-- Documents Tab Content -->
+              <div class="tab-content hidden" id="tab-documents">
+                <div class="resume-header-top" style="margin-bottom: 16px; margin-top: 8px;">
+                  <span class="hint"
+                    style="color: #f97316; display: flex; align-items: center; gap: 6px; font-weight: 500;">
+                    <i class="ph ph-upload-simple"></i> Folders and files can be dragged and dropped here specifically
+                    for the selected folder. (Max size: 100MB)
+                  </span>
+                </div>
+                <div class="file-explorer-container" style="margin-top: 0;">
+                  <div class="explorer-sidebar">
+                    <div class="explorer-sidebar-header">
+                      <span>Folders</span>
+                      <div class="search-input-small">
+                        <input type="text" placeholder="Search...">
+                      </div>
+                    </div>
+                    <div class="folder-tree">
+                      <div class="folder-item active"><i class="ph-fill ph-folder" style="color: #3b82f6;"></i> Root
+                      </div>
+                    </div>
+                  </div>
+                  <div class="explorer-main">
+                    <div class="explorer-toolbar">
+                      <strong>Root</strong>
+                      <div class="toolbar-actions">
+                        <button class="icon-btn-small"
+                          style="border: 1px solid var(--border-color); border-radius: 4px; padding: 4px;"><i
+                            class="ph ph-list-dashes"></i></button>
+                        <button class="icon-btn-small"
+                          style="border: 1px solid var(--border-color); border-radius: 4px; padding: 4px;"><i
+                            class="ph ph-squares-four"></i></button>
+                        <button class="icon-btn-small"
+                          style="border: 1px solid var(--border-color); border-radius: 4px; padding: 4px;"><i
+                            class="ph ph-file-plus"></i></button>
+                        <button class="primary-icon-btn"><i class="ph ph-folder-plus"></i></button>
+                        <button class="icon-btn-small"
+                          style="border: 1px solid var(--border-color); border-radius: 4px; padding: 4px; background: #f3f4f6;"><i
+                            class="ph ph-archive-box"></i></button>
+                      </div>
+                    </div>
+                    <div class="explorer-body">
+                      <div class="empty-folder">
+                        <i class="ph ph-folder" style="font-size: 48px; color: #d1d5db; margin-bottom: 8px;"></i>
+                        <p>This folder is empty</p>
+                        <span class="hint"
+                          style="display: block; margin-top: 6px; color: #9ca3af; font-size: 13px; line-height: 1.4;">Folders
+                          and files can be dragged and dropped here specifically for the selected folder.<br>(Max size:
+                          100MB)</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Modal -->
+<!-- Edit Company Modal -->
+<div class="modal" id="editCompanyModal">
+  <div class="modal-box large-modal">
+    <div class="modal-header custom-modal-header">
+      <div>
+        <h2>Edit Company Details</h2>
+        <p>Update company information.</p>
+      </div>
+      <button class="close-modal" id="closeEditCompanyModal">&times;</button>
+    </div>
+
+    <div class="modal-body form-modal-body">
+      <div class="modal-form-group">
+        <label for="companyNameInput">Company Name</label>
+        <input type="text" id="companyNameInput" value="Simco NDT Demo" />
+      </div>
+
+      <div class="modal-form-group">
+        <label for="companyAddressInput">Address</label>
+        <textarea id="companyAddressInput" rows="4">123 Demo St</textarea>
+      </div>
+
+      <div class="modal-form-group">
+        <label for="companyEmailInput">Primary Contact Email</label>
+        <input type="email" id="companyEmailInput" value="admin@simcondt.com" />
+      </div>
+
+      <div class="modal-form-group">
+        <label for="companyPhoneInput">Primary Contact Phone</label>
+        <input type="text" id="companyPhoneInput" value="" />
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button class="cancel-btn" id="cancelEditCompanyBtn">Cancel</button>
+      <button class="orange-btn save-btn" id="saveCompanyBtn">
+        <i class="fa-regular fa-floppy-disk"></i> Save Changes
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Add Location Modal -->
+<div class="modal" id="addLocationModal">
+  <div class="modal-box medium-modal">
+    <div class="modal-header custom-modal-header">
+      <div>
+        <h2>Add New Location</h2>
+        <p>Create a new company location.</p>
+      </div>
+      <button class="close-modal" id="closeAddLocationModal">&times;</button>
+    </div>
+
+    <div class="modal-body form-modal-body">
+      <div class="modal-form-group">
+        <label for="locationNameInput">Location Name</label>
+        <input type="text" id="locationNameInput" placeholder="e.g. Houston Main Office" />
+      </div>
+
+      <div class="modal-form-group">
+        <label for="locationAddressInput">Address</label>
+        <textarea id="locationAddressInput" rows="4" placeholder="e.g. 123 Industrial Way, Houston, TX"></textarea>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button class="cancel-btn" id="cancelAddLocationBtn">Cancel</button>
+      <button class="orange-btn save-btn" id="saveLocationBtn">
+        <i class="fa-regular fa-floppy-disk"></i> Save Location
+      </button>
+    </div>
+  </div>
+</div>
+<!-- New Folder Modal -->
+<div class="modal" id="newFolderModal">
+  <div class="modal-box medium-modal">
+    <div class="modal-header custom-modal-header">
+      <div>
+        <h2>Create Folder</h2>
+        <p>Add a new folder inside the selected folder.</p>
+      </div>
+      <button class="close-modal" id="closeNewFolderModal">&times;</button>
+    </div>
+
+    <div class="modal-body form-modal-body">
+      <div class="modal-form-group">
+        <label for="newFolderNameInput">Folder Name</label>
+        <input type="text" id="newFolderNameInput" placeholder="Enter folder name" />
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button class="cancel-btn" id="cancelNewFolderBtn">Cancel</button>
+      <button class="orange-btn save-btn" id="saveNewFolderBtn">
+        <i class="fa-regular fa-floppy-disk"></i> Save Folder
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- New File Modal -->
+<div class="modal" id="newFileModal">
+  <div class="modal-box medium-modal">
+    <div class="modal-header custom-modal-header">
+      <div>
+        <h2>Create File</h2>
+        <p>Add a file name to the selected folder.</p>
+      </div>
+      <button class="close-modal" id="closeNewFileModal">&times;</button>
+    </div>
+
+    <div class="modal-body form-modal-body">
+      <div class="modal-form-group">
+        <label for="newFileNameInput">File Name</label>
+        <input type="text" id="newFileNameInput" placeholder="Enter file name" />
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button class="cancel-btn" id="cancelNewFileBtn">Cancel</button>
+      <button class="orange-btn save-btn" id="saveNewFileBtn">
+        <i class="fa-regular fa-floppy-disk"></i> Save File
+      </button>
+    </div>
+  </div>
+</div>
+
+<input type="file" id="hiddenFileUpload" hidden />
+<!-- Add Method Modal -->
+<div class="modal" id="addMethodModal">
+  <div class="modal-box large-modal">
+    <div class="modal-header custom-modal-header">
+      <div>
+        <h2>Add New Method</h2>
+        <p>Configure a new NDT testing method.</p>
+      </div>
+      <button class="close-modal" id="closeAddMethodModal">&times;</button>
+    </div>
+
+    <div class="modal-body form-modal-body">
+      <div class="modal-form-group">
+        <label for="methodNameInput">Method Name</label>
+        <input type="text" id="methodNameInput" placeholder="e.g. Ultrasonic Testing" />
+      </div>
+
+      <div class="modal-form-group">
+        <label for="methodTechniqueInput">Technique</label>
+        <input type="text" id="methodTechniqueInput" placeholder="e.g. Pulse Echo" />
+      </div>
+
+      <div class="modal-form-group">
+        <label for="methodAbbreviationInput">Abbreviation</label>
+        <input type="text" id="methodAbbreviationInput" placeholder="e.g. UT" />
+      </div>
+
+      <div class="checkbox-row">
+        <label class="custom-check">
+          <input type="checkbox" id="excludeCertificateInput" />
+          <span>Exclude from Certificate Generation</span>
+        </label>
+      </div>
+
+      <div class="checkbox-row">
+        <label class="custom-check blue-link-check">
+          <input type="checkbox" id="excludeCompositeInput" />
+          <span>Exclude Composite Score</span>
+        </label>
+      </div>
+
+      <div class="modal-form-group">
+        <label for="methodLevelInput">Available Levels</label>
+        <div class="level-add-row">
+          <input type="text" id="methodLevelInput" placeholder="Add level (e.g. Level IV)" />
+          <button type="button" class="level-add-btn" id="addLevelChipBtn">
+            <i class="fa-solid fa-plus"></i> Add
+          </button>
+        </div>
+
+        <div class="level-chip-list" id="levelChipList"></div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button class="cancel-btn" id="cancelAddMethodBtn">Cancel</button>
+      <button class="orange-btn save-btn" id="saveMethodBtn">
+        <i class="fa-regular fa-floppy-disk"></i> Save Method
+      </button>
+    </div>
+  </div>
+</div>
+<!-- Add Exam Modal -->
+<div class="modal" id="addExamModal">
+  <div class="modal-box medium-modal">
+    <div class="modal-header custom-modal-header">
+      <div>
+        <h2>Add New Exam Type</h2>
+        <p>Create a new exam type configuration.</p>
+      </div>
+      <button class="close-modal" id="closeAddExamModal">&times;</button>
+    </div>
+
+    <div class="modal-body form-modal-body">
+      <div class="modal-form-group">
+        <label for="examNameInput">Name *</label>
+        <input type="text" id="examNameInput" placeholder="e.g. General" />
+      </div>
+
+      <div class="modal-form-group">
+        <label for="examPassMarksInput">Pass Marks (%) *</label>
+        <input type="number" id="examPassMarksInput" placeholder="e.g. 70" />
+      </div>
+
+      <div class="modal-form-group">
+        <label for="examScoringDetailsInput">Scoring Details</label>
+        <textarea
+          id="examScoringDetailsInput"
+          rows="4"
+          placeholder="Enter details about scoring criteria..."
+        ></textarea>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button class="cancel-btn" id="cancelAddExamBtn">Cancel</button>
+      <button class="orange-btn save-btn" id="saveExamBtn">
+        <i class="fa-regular fa-floppy-disk"></i> Save Exam
+      </button>
+    </div>
+  </div>
+</div>
+<!-- Add Signature Modal -->
+<div class="modal" id="addSignatureModal">
+  <div class="modal-box medium-modal">
+    <div class="modal-header custom-modal-header">
+      <div>
+        <h2>Add New Signature</h2>
+        <p>Register a new authorized examiner signature.</p>
+      </div>
+      <button class="close-modal" id="closeAddSignatureModal">&times;</button>
+    </div>
+
+    <div class="modal-body form-modal-body">
+      <div class="modal-form-group">
+        <label for="signatureNameInput">Name *</label>
+        <input type="text" id="signatureNameInput" placeholder="e.g. John Doe" />
+      </div>
+
+      <div class="modal-form-group">
+        <label for="signatureLevelInput">Examiner Level / Title</label>
+        <input type="text" id="signatureLevelInput" placeholder="e.g. ASNT Level III" />
+      </div>
+
+      <div class="modal-form-group">
+        <label>Signature Image *</label>
+
+        <input type="file" id="signatureImageInput" accept="image/png,image/jpeg,image/jpg" hidden />
+
+        <div class="signature-upload-box" id="signatureUploadBox">
+          <i class="fa-solid fa-arrow-up-from-bracket"></i>
+          <p>Click to upload signature image</p>
+          <small>PNG, JPG up to 2MB</small>
+        </div>
+
+        <div class="signature-preview-wrap" id="signaturePreviewWrap" style="display:none;">
+          <img id="signaturePreviewImage" src="" alt="Signature Preview" />
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button class="cancel-btn" id="cancelAddSignatureBtn">Cancel</button>
+      <button class="orange-btn save-btn" id="saveSignatureBtn">
+        <i class="fa-regular fa-floppy-disk"></i> Save Signature
+      </button>
+    </div>
+  </div>
+</div>
+<!-- Add Alert Template Modal -->
+<!-- Add Alert Template Modal -->
+<div class="modal" id="addAlertTemplateModal">
+  <div class="modal-box alert-large-modal">
+    <div class="modal-header alert-modal-header">
+      <h2>Add New Alert Template</h2>
+      <button class="close-modal" id="closeAlertTemplateModal">&times;</button>
+    </div>
+
+    <div class="modal-body alert-modal-scroll">
+      <div class="alert-grid">
+        <div class="modal-form-group">
+          <label for="alertTypeInput">Alert Type</label>
+          <select id="alertTypeInput">
+            <option>Certification Expiry</option>
+            <option>Eye Exam Expiry</option>
+            <option>Training Expiry</option>
+          </select>
+        </div>
+
+        <div class="modal-form-group">
+          <label for="alertDaysInput">Days Before Expiry</label>
+          <input type="number" id="alertDaysInput" value="30" />
+        </div>
+      </div>
+
+      <div class="modal-form-group">
+        <label for="alertSubjectInput">Email Subject</label>
+        <input
+          type="text"
+          id="alertSubjectInput"
+          value="Notification: Certification Expiry Reminder"
+        />
+      </div>
+
+      <div class="alert-recipient-box">
+        <label>Recipients</label>
+        <div class="alert-recipients-row">
+          <label class="alert-check-item">
+            <input type="checkbox" class="alertRecipientCheckbox" value="Personnel" checked />
+            <span>Personnel</span>
+          </label>
+
+          <label class="alert-check-item">
+            <input type="checkbox" class="alertRecipientCheckbox" value="Supervisor" checked />
+            <span>Supervisor</span>
+          </label>
+
+          <label class="alert-check-item">
+            <input type="checkbox" class="alertRecipientCheckbox" value="Admin" checked />
+            <span>Admin</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="modal-form-group">
+        <label>Email Body (Rich Text)</label>
+
+        <div class="editor-box">
+          <div class="editor-toolbar">
+            <button type="button" class="editor-tool-btn" data-command="formatBlock" data-value="p">Normal</button>
+            <button type="button" class="editor-tool-btn" data-command="bold"><b>B</b></button>
+            <button type="button" class="editor-tool-btn" data-command="italic"><i>I</i></button>
+            <button type="button" class="editor-tool-btn" data-command="underline"><u>U</u></button>
+            <button type="button" class="editor-tool-btn" data-command="createLink">
+              <i class="fa-solid fa-link"></i>
+            </button>
+            <button type="button" class="editor-tool-btn" data-command="insertUnorderedList">
+              <i class="fa-solid fa-list-ul"></i>
+            </button>
+            <button type="button" class="editor-tool-btn" data-command="insertOrderedList">
+              <i class="fa-solid fa-list-ol"></i>
+            </button>
+            <button type="button" class="editor-tool-btn" data-command="removeFormat">Tx</button>
+          </div>
+
+          <div id="alertBodyEditor" class="rich-editor-area" contenteditable="true">
+            
+          </div>
+
+          <input type="hidden" id="alertBodyInput" />
+        </div>
+      </div>
+
+      <div class="placeholders-box">
+        <h4>AVAILABLE PLACEHOLDERS:</h4>
+        <div class="placeholder-tags">
+          <span>{{personnel_name}}</span>
+          <span>{{item_name}}</span>
+          <span>{{expiry_date}}</span>
+          <span>{{company_name}}</span>
+          <span>{{certificate_number}}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer alert-footer">
+      <button class="cancel-btn" id="cancelAlertTemplateBtn">Cancel</button>
+      <button class="orange-btn save-btn" id="saveAlertTemplateBtn">Save Template</button>
+    </div>
+  </div>
+</div>
+<!-- Register New Company Modal -->
+<div class="modal" id="modalOverlay">
+  <div class="modal-box large-modal">
+    <div class="modal-header custom-modal-header">
+      <div>
+        <h2>Register New Company</h2>
+        <p>Provide company details to create a new organization</p>
+      </div>
+      <button class="close-modal" id="close-btn">&times;</button>
+    </div>
+
+    <form id="comp-form">
+    <div class="modal-body form-modal-body">
+      <div class="form-row" style="display: flex; gap: 24px; margin-bottom: 20px;">
+        <div class="modal-form-group" style="flex:1;">
+          <label>Company Name</label>
+          <input type="text" id="comp-name" placeholder="e.g. Acme Corp" required>
+        </div>
+        <div class="modal-form-group" style="flex:1;">
+          <label>Primary Email</label>
+          <input type="email" id="comp-email" placeholder="contact@company.com" required>
+        </div>
+      </div>
+      <div class="form-row" style="display: flex; gap: 24px; margin-bottom: 20px;">
+        <div class="modal-form-group" style="flex:1;">
+          <label>Start Date</label>
+          <input class="custom-date" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="startDate" placeholder="MM/dd/yyyy" required>
+        </div>
+        <div class="modal-form-group" style="flex:1;">
+          <label>Valid Till</label>
+          <input class="custom-date" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="validTill" placeholder="MM/dd/yyyy" required>
+        </div>
+      </div>
+      <div class="form-row" style="display: flex; gap: 24px; margin-bottom: 20px;">
+        <div class="modal-form-group" style="flex:1;">
+          <label>Personnel Limit</label>
+          <input type="number" id="staff-limit" placeholder="Unlimited if empty">
+        </div>
+        <div class="modal-form-group pt-label" style="flex:1; display: flex; flex-direction: column; justify-content: space-between;">
+          <label>Company Status</label>
+          <div class="toggle-container" style="display: flex; align-items: center; gap: 12px; padding: 8px 16px; border: 1px solid var(--status-active-border, #A7F3D0); border-radius: 8px; background: var(--status-active-bg, #ECFDF5); width: fit-content;">
+            <label class="switch" style="position: relative; display: inline-block; width: 40px; height: 22px;">
+              <input type="checkbox" id="comp-status" checked style="opacity: 0; width: 0; height: 0;">
+              <span class="slider round" style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #10B981; transition: .4s; border-radius: 34px;"></span>
+            </label>
+            <span class="status-text" id="statusLabel" style="font-size: 14px; font-weight: 600; color: #10B981;">Active</span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-form-group">
+        <label>Office Address</label>
+        <textarea id="officeAddress" placeholder="Full physical address..." rows="4"></textarea>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="cancel-btn" id="cancel-btn">Cancel</button>
+      <button type="submit" class="orange-btn save-btn" id="save-btn">
+        <i class="fa-regular fa-floppy-disk"></i> Register Company
+      </button>
+    </div>
+    </form>
+  </div>
+</div>
+  <script src="script.js"></script>
+  <!-- Add/Edit Modal (Personnel) -->
+  <div class="personnel-modal-overlay hidden" id="personnelModalOverlay">
+    <div class="personnel-modal-box">
+      <div class="personnel-modal-header">
+        <div>
+          <h2 id="personnelModalTitle">Add New Personnel</h2>
+          <p id="modalDesc">Create a new personnel profile in the system.</p>
+        </div>
+        <button class="close-btn" id="btnPersonnelModalClose"><i class="ph ph-x"></i></button>
+      </div>
+
+      <div class="personnel-modal-body">
+        <div class="form-scroll">
+          <div class="profile-photo-upload">
+            <div class="photo-placeholder"><i class="ph ph-user"></i></div>
+            <div class="upload-controls">
+              <label>Profile Photo</label>
+              <div class="file-input-wrapper">
+                <input type="file" id="profilePhotoInput" class="hidden" accept="image/png, image/jpeg">
+                <button type="button" class="choose-file-btn" id="btnChoosePhoto">Choose file</button>
+                <span class="file-name" id="photoFileName">No file chosen</span>
+              </div>
+              <span class="hint">Recommended: Square image, PNG or JPG.</span>
+            </div>
+          </div>
+
+          <form id="personnelFormObj">
+            <input type="hidden" id="editId" value="">
+            <div class="form-row twice">
+              <div class="input-group">
+                <label>First Name *</label>
+                <div class="input-with-icon">
+                  <i class="ph ph-user"></i>
+                  <input type="text" id="fName" placeholder="John" required>
+                </div>
+              </div>
+              <div class="input-group">
+                <label>Last Name *</label>
+                <div class="input-with-icon">
+                  <i class="ph ph-user"></i>
+                  <input type="text" id="lName" placeholder="Doe" required>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row single">
+              <div class="input-group">
+                <label>Employee ID</label>
+                <div class="input-with-icon">
+                  <i class="ph ph-hash"></i>
+                  <input type="text" id="eId" placeholder="EMP-001">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row single">
+              <div class="input-group">
+                <label>Email Address *</label>
+                <div class="input-with-icon">
+                  <i class="ph ph-envelope-simple"></i>
+                  <input type="email" id="email" placeholder="john@example.com" required>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row twice">
+              <div class="input-group">
+                <label>Department</label>
+                <div class="input-with-icon">
+                  <i class="ph ph-buildings"></i>
+                  <input type="text" id="dept" placeholder="Search department...">
+                </div>
+              </div>
+              <div class="input-group">
+                <label>Status</label>
+                <select id="status">
+                  <option value="Active">Active</option>
+                  <option value="Inactive">Inactive</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row twice">
+              <div class="input-group">
+                <label>Location</label>
+                <input type="text" id="loc" placeholder="e.g. New York Office">
+              </div>
+              <div class="input-group">
+                <label>Supervisor</label>
+                <input type="text" id="sup" placeholder="Search supervisor...">
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="secondary-btn" id="btnModalCancel">Cancel</button>
+        <button class="primary-btn" id="btnModalSave"><i class="ph ph-floppy-disk"></i> Save Personnel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Education Modal -->
+  <div class="personnel-modal-overlay hidden" id="educationModal">
+    <div class="personnel-modal-box" style="width: 500px;">
+      <div class="personnel-modal-header">
+        <div>
+          <h2 style="font-size: 18px; font-weight: 600; color: var(--text-main); margin-bottom: 4px;">Add Education</h2>
+          <p style="font-size: 13px; color: var(--text-muted);">Add a new educational record.</p>
+        </div>
+        <button class="close-btn" onclick="closeEducationModal()"><i class="ph ph-x"></i></button>
+      </div>
+      <div class="personnel-modal-body" style="padding: 24px;">
+        <form id="educationForm" style="display: flex; flex-direction: column; gap: 16px;">
+          <div class="input-group">
+            <label>Diploma/Degree *</label>
+            <input type="text" id="eduDegree" required>
+          </div>
+          <div class="input-group">
+            <label>School *</label>
+            <input type="text" id="eduSchool" required>
+          </div>
+          <div class="input-group">
+            <label>Year *</label>
+            <input type="text" id="eduYear" required>
+          </div>
+          <div class="input-group">
+            <label>Document</label>
+            <div
+              style="border: 1px solid var(--border-color); border-radius: 6px; padding: 4px; display: flex; align-items: center;">
+              <input type="file" id="eduDocument" style="border: none; padding: 4px; font-size: 13px; width: 100%;">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="secondary-btn" onclick="closeEducationModal()">Cancel</button>
+        <button class="primary-btn" onclick="saveEducation()">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Job History Modal -->
+  <div class="personnel-modal-overlay hidden" id="jobHistoryModal">
+    <div class="personnel-modal-box" style="width: 700px;">
+      <div class="personnel-modal-header">
+        <div>
+          <h2 style="font-size: 18px; font-weight: 600; color: var(--text-main); margin-bottom: 4px;">Add Job History
+          </h2>
+          <p style="font-size: 13px; color: var(--text-muted);">Add a new employment record.</p>
+        </div>
+        <button class="close-btn" onclick="closeJobHistoryModal()"><i class="ph ph-x"></i></button>
+      </div>
+      <div class="personnel-modal-body" style="padding: 24px;">
+        <form id="jobHistoryForm" style="display: flex; flex-direction: column; gap: 20px;">
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div class="input-group">
+              <label>Company *</label>
+              <input type="text" id="jhCompany" required>
+            </div>
+            <div class="input-group">
+              <label>Position *</label>
+              <input type="text" id="jhPosition" required>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div class="input-group">
+              <label>From Date *</label>
+              <input type="text" id="jhFromDate" placeholder="MM/DD/YYYY" required>
+            </div>
+            <div class="input-group">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <label>End Date *</label>
+                <label
+                  style="display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 400; color: var(--text-muted); cursor: pointer;">
+                  <input type="checkbox" id="jhCurrentEmp" style="width: 14px; height: 14px;"> Current Employer
+                </label>
+              </div>
+              <input type="text" id="jhEndDate" placeholder="MM/DD/YYYY" required>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label>Experience Certificate / Document</label>
+            <div
+              style="border: 1px solid var(--border-color); border-radius: 6px; padding: 4px; display: flex; align-items: center;">
+              <input type="file" id="jhDocument" style="border: none; padding: 4px; font-size: 13px; width: 100%;">
+            </div>
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="secondary-btn" onclick="closeJobHistoryModal()">Cancel</button>
+        <button class="primary-btn" onclick="saveJobHistory()">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Experience Modal -->
+  <div class="personnel-modal-overlay hidden" id="experienceModal">
+    <div class="personnel-modal-box" style="width: 500px;">
+      <div class="personnel-modal-header">
+        <div>
+          <h2 style="font-size: 18px; font-weight: 600; color: var(--text-main); margin-bottom: 4px;">Add Experience
+          </h2>
+          <p style="font-size: 13px; color: var(--text-muted);">Add new cumulative hours for a method.</p>
+        </div>
+        <button class="close-btn" onclick="closeExperienceModal()"><i class="ph ph-x"></i></button>
+      </div>
+      <div class="personnel-modal-body" style="padding: 24px;">
+        <form id="experienceForm" style="display: flex; flex-direction: column; gap: 16px;">
+          <div class="input-group">
+            <label>Method *</label>
+            <input type="text" id="expMethod" placeholder="e.g. UT, PT, MT" required>
+          </div>
+          <div class="input-group">
+            <label>Hours *</label>
+            <input type="text" id="expHours" required>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="secondary-btn" onclick="closeExperienceModal()">Cancel</button>
+        <button class="primary-btn" onclick="saveExperience()">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Training Modal -->
+  <div class="personnel-modal-overlay hidden" id="trainingModal">
+    <div class="personnel-modal-box" style="width: 700px; max-height: 90vh;">
+      <div class="personnel-modal-header">
+        <div>
+          <h2 style="font-size: 18px; font-weight: 600; color: var(--text-main); margin-bottom: 4px;">Add Training</h2>
+          <p style="font-size: 13px; color: var(--text-muted);">Register a new training record for personnel.</p>
+        </div>
+        <button class="close-btn" onclick="closeTrainingModal()"><i class="ph ph-x"></i></button>
+      </div>
+      <div class="personnel-modal-body" style="padding: 24px; overflow-y: auto;">
+        <form id="trainingForm" style="display: flex; flex-direction: column; gap: 20px;">
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div class="input-group">
+              <label>Method</label>
+              <select id="trMethod" style="color: var(--text-muted);">
+                <option value="">Select Method...</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <label>Level</label>
+              <select id="trLevel" style="color: var(--text-muted);">
+                <option value="">Select Level</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div class="input-group">
+              <label>Training Type</label>
+              <select id="trType" style="color: var(--text-main);">
+                <option value="Initial">Initial</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <label>Total Hours</label>
+              <input type="text" id="trHours" placeholder="e.g. 40">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label>Training Provider</label>
+            <input type="text" id="trProvider" placeholder="Institute or Company Name">
+          </div>
+
+          <div class="input-group">
+            <label>Instructor Name</label>
+            <input type="text" id="trInstructor" placeholder="Instructor Name">
+          </div>
+
+          <div class="input-group">
+            <label>Location</label>
+            <input type="text" id="trLocation" placeholder="City, State or Address">
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="secondary-btn" onclick="closeTrainingModal()">Cancel</button>
+        <button class="primary-btn" onclick="saveTraining()"><i class="ph ph-floppy-disk"></i> Save Record</button>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

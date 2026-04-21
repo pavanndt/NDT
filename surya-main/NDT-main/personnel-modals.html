@@ -1,0 +1,296 @@
+  <!-- Add/Edit Modal (Personnel) -->
+  <div class="modal-overlay hidden" id="personnelModalOverlay">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div>
+          <h2 id="personnelModalTitle">Add New Personnel</h2>
+          <p id="modalDesc">Create a new personnel profile in the system.</p>
+        </div>
+        <button class="close-btn" id="btnPersonnelModalClose"><i class="ph ph-x"></i></button>
+      </div>
+
+      <div class="modal-body">
+        <div class="form-scroll">
+          <div class="profile-photo-upload">
+            <div class="photo-placeholder"><i class="ph ph-user"></i></div>
+            <div class="upload-controls">
+              <label>Profile Photo</label>
+              <div class="file-input-wrapper">
+                <input type="file" id="profilePhotoInput" class="hidden" accept="image/png, image/jpeg">
+                <button type="button" class="choose-file-btn" id="btnChoosePhoto">Choose file</button>
+                <span class="file-name" id="photoFileName">No file chosen</span>
+              </div>
+              <span class="hint">Recommended: Square image, PNG or JPG.</span>
+            </div>
+          </div>
+
+          <form id="personnelFormObj">
+            <input type="hidden" id="editId" value="">
+            <div class="form-row twice">
+              <div class="input-group">
+                <label>First Name *</label>
+                <div class="input-with-icon">
+                  <i class="ph ph-user"></i>
+                  <input type="text" id="fName" placeholder="John" required>
+                </div>
+              </div>
+              <div class="input-group">
+                <label>Last Name *</label>
+                <div class="input-with-icon">
+                  <i class="ph ph-user"></i>
+                  <input type="text" id="lName" placeholder="Doe" required>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row single">
+              <div class="input-group">
+                <label>Employee ID</label>
+                <div class="input-with-icon">
+                  <i class="ph ph-hash"></i>
+                  <input type="text" id="eId" placeholder="EMP-001">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row single">
+              <div class="input-group">
+                <label>Email Address *</label>
+                <div class="input-with-icon">
+                  <i class="ph ph-envelope-simple"></i>
+                  <input type="email" id="email" placeholder="john@example.com" required>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row twice">
+              <div class="input-group">
+                <label>Department</label>
+                <div class="input-with-icon">
+                  <i class="ph ph-buildings"></i>
+                  <input type="text" id="dept" placeholder="Search department...">
+                </div>
+              </div>
+              <div class="input-group">
+                <label>Status</label>
+                <select id="status">
+                  <option value="Active">Active</option>
+                  <option value="Inactive">Inactive</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row twice">
+              <div class="input-group">
+                <label>Location</label>
+                <input type="text" id="loc" placeholder="e.g. New York Office">
+              </div>
+              <div class="input-group">
+                <label>Supervisor</label>
+                <input type="text" id="sup" placeholder="Search supervisor...">
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="secondary-btn" id="btnModalCancel">Cancel</button>
+        <button class="primary-btn" id="btnModalSave"><i class="ph ph-floppy-disk"></i> Save Personnel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Education Modal -->
+  <div class="modal-overlay hidden" id="educationModal">
+    <div class="modal-box" style="width: 500px;">
+      <div class="modal-header">
+        <div>
+          <h2 style="font-size: 18px; font-weight: 600; color: var(--text-main); margin-bottom: 4px;">Add Education</h2>
+          <p style="font-size: 13px; color: var(--text-muted);">Add a new educational record.</p>
+        </div>
+        <button class="close-btn" onclick="closeEducationModal()"><i class="ph ph-x"></i></button>
+      </div>
+      <div class="modal-body" style="padding: 24px;">
+        <form id="educationForm" style="display: flex; flex-direction: column; gap: 16px;">
+          <div class="input-group">
+            <label>Diploma/Degree *</label>
+            <input type="text" id="eduDegree" required>
+          </div>
+          <div class="input-group">
+            <label>School *</label>
+            <input type="text" id="eduSchool" required>
+          </div>
+          <div class="input-group">
+            <label>Year *</label>
+            <input type="text" id="eduYear" required>
+          </div>
+          <div class="input-group">
+            <label>Document</label>
+            <div
+              style="border: 1px solid var(--border-color); border-radius: 6px; padding: 4px; display: flex; align-items: center;">
+              <input type="file" id="eduDocument" style="border: none; padding: 4px; font-size: 13px; width: 100%;">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="secondary-btn" onclick="closeEducationModal()">Cancel</button>
+        <button class="primary-btn" onclick="saveEducation()">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Job History Modal -->
+  <div class="modal-overlay hidden" id="jobHistoryModal">
+    <div class="modal-box" style="width: 700px;">
+      <div class="modal-header">
+        <div>
+          <h2 style="font-size: 18px; font-weight: 600; color: var(--text-main); margin-bottom: 4px;">Add Job History
+          </h2>
+          <p style="font-size: 13px; color: var(--text-muted);">Add a new employment record.</p>
+        </div>
+        <button class="close-btn" onclick="closeJobHistoryModal()"><i class="ph ph-x"></i></button>
+      </div>
+      <div class="modal-body" style="padding: 24px;">
+        <form id="jobHistoryForm" style="display: flex; flex-direction: column; gap: 20px;">
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div class="input-group">
+              <label>Company *</label>
+              <input type="text" id="jhCompany" required>
+            </div>
+            <div class="input-group">
+              <label>Position *</label>
+              <input type="text" id="jhPosition" required>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div class="input-group">
+              <label>From Date *</label>
+              <input type="text" id="jhFromDate" placeholder="MM/DD/YYYY" required>
+            </div>
+            <div class="input-group">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <label>End Date *</label>
+                <label
+                  style="display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 400; color: var(--text-muted); cursor: pointer;">
+                  <input type="checkbox" id="jhCurrentEmp" style="width: 14px; height: 14px;"> Current Employer
+                </label>
+              </div>
+              <input type="text" id="jhEndDate" placeholder="MM/DD/YYYY" required>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label>Experience Certificate / Document</label>
+            <div
+              style="border: 1px solid var(--border-color); border-radius: 6px; padding: 4px; display: flex; align-items: center;">
+              <input type="file" id="jhDocument" style="border: none; padding: 4px; font-size: 13px; width: 100%;">
+            </div>
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="secondary-btn" onclick="closeJobHistoryModal()">Cancel</button>
+        <button class="primary-btn" onclick="saveJobHistory()">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Experience Modal -->
+  <div class="modal-overlay hidden" id="experienceModal">
+    <div class="modal-box" style="width: 500px;">
+      <div class="modal-header">
+        <div>
+          <h2 style="font-size: 18px; font-weight: 600; color: var(--text-main); margin-bottom: 4px;">Add Experience
+          </h2>
+          <p style="font-size: 13px; color: var(--text-muted);">Add new cumulative hours for a method.</p>
+        </div>
+        <button class="close-btn" onclick="closeExperienceModal()"><i class="ph ph-x"></i></button>
+      </div>
+      <div class="modal-body" style="padding: 24px;">
+        <form id="experienceForm" style="display: flex; flex-direction: column; gap: 16px;">
+          <div class="input-group">
+            <label>Method *</label>
+            <input type="text" id="expMethod" placeholder="e.g. UT, PT, MT" required>
+          </div>
+          <div class="input-group">
+            <label>Hours *</label>
+            <input type="text" id="expHours" required>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="secondary-btn" onclick="closeExperienceModal()">Cancel</button>
+        <button class="primary-btn" onclick="saveExperience()">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Training Modal -->
+  <div class="modal-overlay hidden" id="trainingModal">
+    <div class="modal-box" style="width: 700px; max-height: 90vh;">
+      <div class="modal-header">
+        <div>
+          <h2 style="font-size: 18px; font-weight: 600; color: var(--text-main); margin-bottom: 4px;">Add Training</h2>
+          <p style="font-size: 13px; color: var(--text-muted);">Register a new training record for personnel.</p>
+        </div>
+        <button class="close-btn" onclick="closeTrainingModal()"><i class="ph ph-x"></i></button>
+      </div>
+      <div class="modal-body" style="padding: 24px; overflow-y: auto;">
+        <form id="trainingForm" style="display: flex; flex-direction: column; gap: 20px;">
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div class="input-group">
+              <label>Method</label>
+              <select id="trMethod" style="color: var(--text-muted);">
+                <option value="">Select Method...</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <label>Level</label>
+              <select id="trLevel" style="color: var(--text-muted);">
+                <option value="">Select Level</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div class="input-group">
+              <label>Training Type</label>
+              <select id="trType" style="color: var(--text-main);">
+                <option value="Initial">Initial</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <label>Total Hours</label>
+              <input type="text" id="trHours" placeholder="e.g. 40">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label>Training Provider</label>
+            <input type="text" id="trProvider" placeholder="Institute or Company Name">
+          </div>
+
+          <div class="input-group">
+            <label>Instructor Name</label>
+            <input type="text" id="trInstructor" placeholder="Instructor Name">
+          </div>
+
+          <div class="input-group">
+            <label>Location</label>
+            <input type="text" id="trLocation" placeholder="City, State or Address">
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="secondary-btn" onclick="closeTrainingModal()">Cancel</button>
+        <button class="primary-btn" onclick="saveTraining()"><i class="ph ph-floppy-disk"></i> Save Record</button>
+      </div>
+    </div>
+  </div>
