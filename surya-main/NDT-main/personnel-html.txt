@@ -34,7 +34,7 @@
                 <div class="profile-identity">
                   <div class="avatar-large" id="detailAvatar">DG</div>
                   <div class="profile-name-group">
-                    <h2 id="detailName">dharani gedela</h2>
+                    <h2 id="detailName">Dharani Gedela</h2>
                     <span id="detailDept">No Department</span>
                   </div>
                 </div>

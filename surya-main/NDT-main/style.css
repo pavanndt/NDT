@@ -24,9 +24,9 @@ body {
 .login-card {
   width: 100%;
   max-width: 405px;
-  background: #ffffff;
+  background: #c91919;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 8px rgba(203, 24, 24, 0.12);
   padding: 34px 36px 36px;
   text-align: center;
 }
@@ -111,8 +111,8 @@ h1 {
   height: 46px;
   border: none;
   border-radius: 8px;
-  background: #eb8f1f;
-  color: #ffffff;
+  background: #a91235;
+  color: #5a2121;
   font-size: 16px;
   font-weight: 700;
   cursor: pointer;
@@ -121,7 +121,7 @@ h1 {
 }
 
 .signin-btn:hover {
-  background: #d97f13;
+  background: #cb1212;
 }
 
 * {
