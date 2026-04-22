@@ -72,17 +72,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const menuName = this.getAttribute("data-menu");
       if (menuName === "Company Setup") {
-          if (pageCompanySetup) pageCompanySetup.style.display = "block";
-          if (pageCompanyManagement) pageCompanyManagement.style.display = "none";
-          if (companyPageTitle) companyPageTitle.textContent = "Company Setup";
+        if (pageCompanySetup) pageCompanySetup.style.display = "block";
+        if (pageCompanyManagement) pageCompanyManagement.style.display = "none";
+        if (companyPageTitle) companyPageTitle.textContent = "Company Setup";
       } else if (menuName === "Company Management") {
-          if (pageCompanySetup) pageCompanySetup.style.display = "none";
-          if (pageCompanyManagement) pageCompanyManagement.style.display = "block";
-          if (companyPageTitle) companyPageTitle.textContent = "Company Management";
+        if (pageCompanySetup) pageCompanySetup.style.display = "none";
+        if (pageCompanyManagement) pageCompanyManagement.style.display = "block";
+        if (companyPageTitle) companyPageTitle.textContent = "Company Management";
       } else {
-          if (pageCompanySetup) pageCompanySetup.style.display = "none";
-          if (pageCompanyManagement) pageCompanyManagement.style.display = "none";
-          if (companyPageTitle) companyPageTitle.textContent = menuName;
+        if (pageCompanySetup) pageCompanySetup.style.display = "none";
+        if (pageCompanyManagement) pageCompanyManagement.style.display = "none";
+        if (companyPageTitle) companyPageTitle.textContent = menuName;
       }
     });
   });
@@ -100,11 +100,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // COLLAPSE BUTTON
   const collapseBtn = document.getElementById("collapseBtn");
-if (collapseBtn) {
-  collapseBtn.addEventListener("click", function () {
-    document.querySelector(".sidebar").classList.toggle("hide-sidebar");
-  });
-}
+  if (collapseBtn) {
+    collapseBtn.addEventListener("click", function () {
+      document.querySelector(".sidebar").classList.toggle("hide-sidebar");
+    });
+  }
 
   // EDIT COMPANY MODAL
   const editProfileBtn = document.getElementById("editProfileBtn");
@@ -609,11 +609,10 @@ function renderDocuments() {
           <span class="file-name">${escapeHtml(item.name)}</span>
         </div>
         <div class="file-actions">
-          ${
-            item.type === "folder"
-              ? `<button class="small-action-btn" onclick="openFolder('${jsEscape(item.name)}')">Open</button>`
-              : ""
-          }
+          ${item.type === "folder"
+        ? `<button class="small-action-btn" onclick="openFolder('${jsEscape(item.name)}')">Open</button>`
+        : ""
+      }
           <button class="small-action-btn" onclick="deleteDocumentItem(${index})">Delete</button>
         </div>
       </div>
@@ -1497,83 +1496,83 @@ function setupProfileDropdown() {
 
 // Initial Data
 let companies = [
-    {
-        id: 1,
-        company: "Surya Corp",
-        email: "suryateja@company.com",
-        address: "new york",
-        startDate: "2026-04-05",
-        validTill: "2027-11-18",
-        status: true
-    },
-    {
-        id: 2,
-        company: "sai@corp",
-        email: "sai@corp.com",
-        address: "london",
-        startDate: "2026-04-08",
-        validTill: "2026-11-12",
-        status: true
-    },
-    {
-        id: 4,
-        company: "pavancorp",
-        email: "pavan@corp.com",
-        address: "germany",
-        startDate: "2026-04-08",
-        validTill: "2026-04-12",
-        status: true
-    }
+  {
+    id: 1,
+    company: "Surya Corp",
+    email: "suryateja@company.com",
+    address: "new york",
+    startDate: "2026-04-05",
+    validTill: "2027-11-18",
+    status: true
+  },
+  {
+    id: 2,
+    company: "sai@corp",
+    email: "sai@corp.com",
+    address: "london",
+    startDate: "2026-04-08",
+    validTill: "2026-11-12",
+    status: true
+  },
+  {
+    id: 4,
+    company: "pavancorp",
+    email: "pavan@corp.com",
+    address: "germany",
+    startDate: "2026-04-08",
+    validTill: "2026-04-12",
+    status: true
+  }
 ];
 
 let editingId = null;
 
 // Format Date to MM/DD/YYYY
 function formatDate(dateStr) {
-    if (!dateStr) return "";
-    const parts = dateStr.split('-');
-    if (parts.length === 3) {
-        return `${parts[1]}/${parts[2]}/${parts[0]}`;
-    }
-    return dateStr;
+  if (!dateStr) return "";
+  const parts = dateStr.split('-');
+  if (parts.length === 3) {
+    return `${parts[1]}/${parts[2]}/${parts[0]}`;
+  }
+  return dateStr;
 }
 
 // Render Table
 function renderTable() {
-    const tableBody = document.querySelector("#comp-table tbody");
-    if(!tableBody) return;
-    
-    tableBody.innerHTML = "";
+  const tableBody = document.querySelector("#comp-table tbody");
+  if (!tableBody) return;
 
-    const filterCompanyInput = document.getElementById("filter-company");
-    const filterEmailInput = document.getElementById("filter-email");
-    const filterDateInput = document.getElementById("filter-date");
-    const filterStatusInput = document.getElementById("filter-status");
+  tableBody.innerHTML = "";
 
-    const fCompany = filterCompanyInput ? filterCompanyInput.value.toLowerCase() : "";
-    const fEmail = filterEmailInput ? filterEmailInput.value.toLowerCase() : "";
-    const fDate = filterDateInput ? filterDateInput.value : "";
-    const fStatus = filterStatusInput ? filterStatusInput.value : "All";
+  const filterCompanyInput = document.getElementById("filter-company");
+  const filterEmailInput = document.getElementById("filter-email");
+  const filterDateInput = document.getElementById("filter-date");
+  const filterStatusInput = document.getElementById("filter-status");
 
-    const filteredCompanies = companies.filter(company => {
-        const matchCompany = company.company.toLowerCase().includes(fCompany);
-        const matchEmail = company.email.toLowerCase().includes(fEmail);
-        const matchDate = fDate ? (company.startDate.includes(fDate) || company.validTill.includes(fDate) || formatDate(company.startDate).includes(fDate) || formatDate(company.validTill).includes(fDate)) : true;
+  const fCompany = filterCompanyInput ? filterCompanyInput.value.toLowerCase() : "";
+  const fEmail = filterEmailInput ? filterEmailInput.value.toLowerCase() : "";
+  const fDate = filterDateInput ? filterDateInput.value : "";
+  const fStatus = filterStatusInput ? filterStatusInput.value : "All";
 
-        let matchStatus = true;
-        if (fStatus === "Active") matchStatus = company.status === true;
-        else if (fStatus === "Inactive") matchStatus = company.status === false;
+  const filteredCompanies = companies.filter(company => {
+    const matchCompany = company.company.toLowerCase().includes(fCompany);
+    const matchEmail = company.email.toLowerCase().includes(fEmail);
+    const matchDate = fDate ? (company.startDate.includes(fDate) || company.validTill.includes(fDate) || formatDate(company.startDate).includes(fDate) || formatDate(company.validTill).includes(fDate)) : true;
 
-        return matchCompany && matchEmail && matchDate && matchStatus;
-    });
+    let matchStatus = true;
+    if (fStatus === "Active") matchStatus = company.status === true;
+    else if (fStatus === "Inactive") matchStatus = company.status === false;
 
-    filteredCompanies.forEach(company => {
-        const tr = document.createElement("tr");
+    return matchCompany && matchEmail && matchDate && matchStatus;
+  });
 
-        const statusClass = company.status ? "management-status-active" : "management-status-inactive";
-        const statusText = company.status ? "Active" : "Inactive";
+  filteredCompanies.forEach(company => {
+    const tr = document.createElement("tr");
 
-        tr.innerHTML = `
+    const statusClass = company.status ? "management-status-active" : "management-status-inactive";
+    const statusText = company.status ? "Active" : "Inactive";
+
+    tr.innerHTML = `
             <td>
                 <div class="td-flex">
                     <div class="table-icon-wrap"><i class='fa-solid fa-building'></i></div>
@@ -1604,156 +1603,156 @@ function renderTable() {
                 </div>
             </td>
         `;
-        tableBody.appendChild(tr);
-    });
+    tableBody.appendChild(tr);
+  });
 }
 
 function updateStatusLabel() {
-    const compStatusInput = document.getElementById("comp-status");
-    const statusLabel = document.getElementById("statusLabel");
-    const toggleContainer = document.querySelector(".toggle-container");
-    if(!compStatusInput || !statusLabel) return;
-    
-    if (compStatusInput.checked) {
-        statusLabel.textContent = "Active";
-        statusLabel.style.color = "#10B981";
-        if(toggleContainer){
-          toggleContainer.style.backgroundColor = "var(--status-active-bg, #ECFDF5)";
-          toggleContainer.style.borderColor = "var(--status-active-border, #A7F3D0)";
-        }
-    } else {
-        statusLabel.textContent = "Inactive";
-        statusLabel.style.color = "#DC2626";
-        if(toggleContainer){
-          toggleContainer.style.backgroundColor = "#FEE2E2";
-          toggleContainer.style.borderColor = "#FECACA";
-        }
+  const compStatusInput = document.getElementById("comp-status");
+  const statusLabel = document.getElementById("statusLabel");
+  const toggleContainer = document.querySelector(".toggle-container");
+  if (!compStatusInput || !statusLabel) return;
+
+  if (compStatusInput.checked) {
+    statusLabel.textContent = "Active";
+    statusLabel.style.color = "#10B981";
+    if (toggleContainer) {
+      toggleContainer.style.backgroundColor = "var(--status-active-bg, #ECFDF5)";
+      toggleContainer.style.borderColor = "var(--status-active-border, #A7F3D0)";
     }
+  } else {
+    statusLabel.textContent = "Inactive";
+    statusLabel.style.color = "#DC2626";
+    if (toggleContainer) {
+      toggleContainer.style.backgroundColor = "#FEE2E2";
+      toggleContainer.style.borderColor = "#FECACA";
+    }
+  }
 }
 
 // Edit Company
 window.editMgmtCompany = function (id) {
-    const company = companies.find(c => c.id === id);
-    if (company) {
-        editingId = company.id;
-        document.getElementById("comp-name").value = company.company;
-        document.getElementById("comp-email").value = company.email;
-        document.getElementById("startDate").value = company.startDate;
-        document.getElementById("validTill").value = company.validTill;
-        document.getElementById("staff-limit").value = "";
-        document.getElementById("comp-status").checked = company.status;
-        document.getElementById("officeAddress").value = company.address;
+  const company = companies.find(c => c.id === id);
+  if (company) {
+    editingId = company.id;
+    document.getElementById("comp-name").value = company.company;
+    document.getElementById("comp-email").value = company.email;
+    document.getElementById("startDate").value = company.startDate;
+    document.getElementById("validTill").value = company.validTill;
+    document.getElementById("staff-limit").value = "";
+    document.getElementById("comp-status").checked = company.status;
+    document.getElementById("officeAddress").value = company.address;
 
-        updateStatusLabel();
-        
-        document.getElementById("save-btn").innerHTML = "<i class='fa-regular fa-floppy-disk'></i> Register Company";
-        document.querySelector("#modalOverlay .modal-header h2").textContent = "Register New Company";
-        
-        openModal(document.getElementById("modalOverlay"));
-    }
+    updateStatusLabel();
+
+    document.getElementById("save-btn").innerHTML = "<i class='fa-regular fa-floppy-disk'></i> Register Company";
+    document.querySelector("#modalOverlay .modal-header h2").textContent = "Register New Company";
+
+    openModal(document.getElementById("modalOverlay"));
+  }
 }
 
 // Delete Company
 window.deleteMgmtCompany = function (id) {
-    companies = companies.filter(c => c.id !== id);
-    renderTable();
+  companies = companies.filter(c => c.id !== id);
+  renderTable();
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    const modalOverlay = document.getElementById("modalOverlay");
-    const addBtn = document.getElementById("add-btn");
-    const closeBtn = document.getElementById("close-btn");
-    const cancelBtn = document.getElementById("cancel-btn");
-    const compForm = document.getElementById("comp-form");
-    
-    const filterCompanyInput = document.getElementById("filter-company");
-    const filterEmailInput = document.getElementById("filter-email");
-    const filterDateInput = document.getElementById("filter-date");
-    const filterStatusInput = document.getElementById("filter-status");
+  const modalOverlay = document.getElementById("modalOverlay");
+  const addBtn = document.getElementById("add-btn");
+  const closeBtn = document.getElementById("close-btn");
+  const cancelBtn = document.getElementById("cancel-btn");
+  const compForm = document.getElementById("comp-form");
 
-    if(filterCompanyInput) filterCompanyInput.addEventListener("input", renderTable);
-    if(filterEmailInput) filterEmailInput.addEventListener("input", renderTable);
-    if(filterDateInput) filterDateInput.addEventListener("input", renderTable);
-    if(filterStatusInput) filterStatusInput.addEventListener("input", renderTable);
-    
-    if (addBtn) {
-        addBtn.addEventListener("click", () => {
-             compForm.reset();
-             const compStatusInput = document.getElementById("comp-status");
-             if(compStatusInput) compStatusInput.checked = true;
-             updateStatusLabel();
-             editingId = null;
-             document.getElementById("save-btn").innerHTML = "<i class='fa-regular fa-floppy-disk'></i> Register Company";
-             document.querySelector("#modalOverlay .modal-header h2").textContent = "Register New Company";
-             openModal(modalOverlay);
-        });
-    }
+  const filterCompanyInput = document.getElementById("filter-company");
+  const filterEmailInput = document.getElementById("filter-email");
+  const filterDateInput = document.getElementById("filter-date");
+  const filterStatusInput = document.getElementById("filter-status");
 
-    if (closeBtn) {
-        closeBtn.addEventListener("click", () => {
-            closeModal(modalOverlay);
-        });
-    }
+  if (filterCompanyInput) filterCompanyInput.addEventListener("input", renderTable);
+  if (filterEmailInput) filterEmailInput.addEventListener("input", renderTable);
+  if (filterDateInput) filterDateInput.addEventListener("input", renderTable);
+  if (filterStatusInput) filterStatusInput.addEventListener("input", renderTable);
 
-    if (cancelBtn) {
-        cancelBtn.addEventListener("click", () => {
-            closeModal(modalOverlay);
-        });
-    }
-    
-    const filterBtn = document.getElementById("filter-btn");
-    const filterBox = document.getElementById("filter-box");
-    if (filterBtn && filterBox) {
-        filterBtn.addEventListener("click", () => {
-            if (filterBox.style.display === "none") {
-                filterBox.style.display = "flex";
-                filterBtn.classList.add("active");
-            } else {
-                filterBox.style.display = "none";
-                filterBtn.classList.remove("active");
-            }
-        });
-    }
-    
-    const compStatusInput = document.getElementById("comp-status");
-    if(compStatusInput) compStatusInput.addEventListener("change", updateStatusLabel);
-    
-    if(compForm) {
-        compForm.addEventListener("submit", (e) => {
-            e.preventDefault();
+  if (addBtn) {
+    addBtn.addEventListener("click", () => {
+      compForm.reset();
+      const compStatusInput = document.getElementById("comp-status");
+      if (compStatusInput) compStatusInput.checked = true;
+      updateStatusLabel();
+      editingId = null;
+      document.getElementById("save-btn").innerHTML = "<i class='fa-regular fa-floppy-disk'></i> Register Company";
+      document.querySelector("#modalOverlay .modal-header h2").textContent = "Register New Company";
+      openModal(modalOverlay);
+    });
+  }
 
-            const newCompany = {
-                id: editingId || Date.now(),
-                company: document.getElementById("comp-name").value,
-                email: document.getElementById("comp-email").value,
-                startDate: document.getElementById("startDate").value,
-                validTill: document.getElementById("validTill").value,
-                status: document.getElementById("comp-status").checked,
-                address: document.getElementById("officeAddress").value
-            };
+  if (closeBtn) {
+    closeBtn.addEventListener("click", () => {
+      closeModal(modalOverlay);
+    });
+  }
 
-            if (editingId) {
-                const index = companies.findIndex(c => c.id === editingId);
-                if (index > -1) {
-                    companies[index] = newCompany;
-                }
-            } else {
-                companies.push(newCompany);
-            }
+  if (cancelBtn) {
+    cancelBtn.addEventListener("click", () => {
+      closeModal(modalOverlay);
+    });
+  }
 
-            renderTable();
-            closeModal(modalOverlay);
-        });
-    }
-    
-    // Set active tab logic nicely
-    const params = new URLSearchParams(window.location.search);
-    if(params.get('tab') === 'companyManagement') {
-        const mgmtBtn = document.querySelector('[data-menu="Company Management"]');
-        if(mgmtBtn) mgmtBtn.click();
-    }
-    
-    renderTable();
+  const filterBtn = document.getElementById("filter-btn");
+  const filterBox = document.getElementById("filter-box");
+  if (filterBtn && filterBox) {
+    filterBtn.addEventListener("click", () => {
+      if (filterBox.style.display === "none") {
+        filterBox.style.display = "flex";
+        filterBtn.classList.add("active");
+      } else {
+        filterBox.style.display = "none";
+        filterBtn.classList.remove("active");
+      }
+    });
+  }
+
+  const compStatusInput = document.getElementById("comp-status");
+  if (compStatusInput) compStatusInput.addEventListener("change", updateStatusLabel);
+
+  if (compForm) {
+    compForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const newCompany = {
+        id: editingId || Date.now(),
+        company: document.getElementById("comp-name").value,
+        email: document.getElementById("comp-email").value,
+        startDate: document.getElementById("startDate").value,
+        validTill: document.getElementById("validTill").value,
+        status: document.getElementById("comp-status").checked,
+        address: document.getElementById("officeAddress").value
+      };
+
+      if (editingId) {
+        const index = companies.findIndex(c => c.id === editingId);
+        if (index > -1) {
+          companies[index] = newCompany;
+        }
+      } else {
+        companies.push(newCompany);
+      }
+
+      renderTable();
+      closeModal(modalOverlay);
+    });
+  }
+
+  // Set active tab logic nicely
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('tab') === 'companyManagement') {
+    const mgmtBtn = document.querySelector('[data-menu="Company Management"]');
+    if (mgmtBtn) mgmtBtn.click();
+  }
+
+  renderTable();
 });
 
 let personnel = [
@@ -1847,7 +1846,7 @@ function renderDetails() {
   };
   Object.keys(fields).forEach(id => {
     const el = document.getElementById(id);
-    if(el) el.textContent = fields[id];
+    if (el) el.textContent = fields[id];
   });
 
   renderEducation();
@@ -1893,19 +1892,19 @@ function closePersonnelModal() {
 }
 
 // Event Listeners
-if(btnAddTop) btnAddTop.addEventListener("click", () => openPersonnelModal("add"));
-if(btnEdit) btnEdit.addEventListener("click", () => openPersonnelModal("edit"));
+if (btnAddTop) btnAddTop.addEventListener("click", () => openPersonnelModal("add"));
+if (btnEdit) btnEdit.addEventListener("click", () => openPersonnelModal("edit"));
 
-if(btnPersonnelModalClose) btnPersonnelModalClose.addEventListener("click", closePersonnelModal);
-if(btnModalCancel) btnModalCancel.addEventListener("click", closePersonnelModal);
+if (btnPersonnelModalClose) btnPersonnelModalClose.addEventListener("click", closePersonnelModal);
+if (btnModalCancel) btnModalCancel.addEventListener("click", closePersonnelModal);
 
-if(btnChoosePhoto) {
+if (btnChoosePhoto) {
   btnChoosePhoto.addEventListener("click", () => {
     profilePhotoInput.click();
   });
 }
 
-if(profilePhotoInput) {
+if (profilePhotoInput) {
   profilePhotoInput.addEventListener("change", (e) => {
     if (e.target.files && e.target.files.length > 0) {
       photoFileName.textContent = e.target.files[0].name;
@@ -1915,7 +1914,7 @@ if(profilePhotoInput) {
   });
 }
 
-if(personnelModalOverlay) {
+if (personnelModalOverlay) {
   personnelModalOverlay.addEventListener("click", (e) => {
     // Do nothing
   });
@@ -1925,7 +1924,7 @@ if(personnelModalOverlay) {
   });
 }
 
-if(btnModalSave) {
+if (btnModalSave) {
   btnModalSave.addEventListener("click", () => {
     if (!personnelFormObj.reportValidity()) return;
 
@@ -1955,7 +1954,7 @@ if(btnModalSave) {
       // Add new
       const newId = personnel.length ? Math.max(...personnel.map(x => x.id)) + 1 : 1;
       personnel.push({ id: newId, ...pData });
-      currentId = newId; 
+      currentId = newId;
     }
 
     closePersonnelModal();
@@ -1964,7 +1963,7 @@ if(btnModalSave) {
   });
 }
 
-if(personnelFormObj) {
+if (personnelFormObj) {
   personnelFormObj.addEventListener("submit", (e) => {
     e.preventDefault();
     btnModalSave.click();
@@ -2001,7 +2000,7 @@ tabBtns.forEach(btn => {
 
     const personnelTabs = document.querySelectorAll("#page-personnel .tab-btn");
     const personnelContents = document.querySelectorAll("#page-personnel .tab-content");
-    
+
     personnelTabs.forEach(b => b.classList.remove("active"));
     personnelContents.forEach(c => c.classList.add("hidden"));
 
@@ -2010,12 +2009,12 @@ tabBtns.forEach(btn => {
 
     const tabId = btn.getAttribute("data-tab");
     const targetContent = document.getElementById("tab-" + tabId);
-    if(targetContent) targetContent.classList.remove("hidden");
+    if (targetContent) targetContent.classList.remove("hidden");
 
     if (tabId === 'personal') {
-      if(tabContentTitle) tabContentTitle.textContent = "Personal Information";
+      if (tabContentTitle) tabContentTitle.textContent = "Personal Information";
     } else {
-      if(tabContentTitle) tabContentTitle.textContent = btn.textContent;
+      if (tabContentTitle) tabContentTitle.textContent = btn.textContent;
     }
   });
 });
@@ -2032,7 +2031,7 @@ subTabBtns.forEach(btn => {
   btn.addEventListener("click", () => {
     subTabBtns.forEach(b => b.classList.remove("active"));
     subTabContents.forEach(c => c.classList.add("hidden"));
-    
+
     btn.classList.add("active");
     const subTabId = btn.getAttribute("data-subtab");
     document.getElementById("subtab-" + subTabId).classList.remove("hidden");
@@ -2067,10 +2066,10 @@ function renderTable(data, tbodyId, emptyMsg, colCount, rowHTML) {
 }
 
 const toggleModal = (modal, formId, show) => {
-  if(!modal) return;
-  if(show && formId) {
+  if (!modal) return;
+  if (show && formId) {
     const formEl = document.getElementById(formId);
-    if(formEl) formEl.reset();
+    if (formEl) formEl.reset();
   }
   modal.classList[show ? 'remove' : 'add']("hidden");
 };
@@ -2081,7 +2080,7 @@ window.closeEducationModal = () => toggleModal(educationModalObj, null, false);
 
 function renderEducation() {
   const p = getActivePerson();
-  if(!p) return;
+  if (!p) return;
   renderTable(p.education, "eduTableBody", "No education records found.", 5, (edu, idx) => `
     <tr>
       <td>${edu.degree}</td><td>${edu.school}</td><td>${edu.year}</td>
@@ -2090,11 +2089,11 @@ function renderEducation() {
     </tr>`);
 }
 
-window.saveEducation = function() {
+window.saveEducation = function () {
   const degree = document.getElementById("eduDegree").value.trim();
   const school = document.getElementById("eduSchool").value.trim();
   const year = document.getElementById("eduYear").value.trim();
-  
+
   if (!degree || !school || !year) {
     alert("Please fill all required fields (*).");
     return;
@@ -2106,7 +2105,7 @@ window.saveEducation = function() {
   window.closeEducationModal();
 };
 
-window.deleteEducation = function(idx) {
+window.deleteEducation = function (idx) {
   const p = getActivePerson();
   p.education.splice(idx, 1);
   renderEducation();
@@ -2116,9 +2115,9 @@ const jobHistoryModalObj = document.getElementById("jobHistoryModal");
 const jhCurrentEmp = document.getElementById("jhCurrentEmp");
 const jhEndDate = document.getElementById("jhEndDate");
 
-window.openJobHistoryModal = function() {
+window.openJobHistoryModal = function () {
   toggleModal(jobHistoryModalObj, "jobHistoryForm", true);
-  if(jhEndDate) {
+  if (jhEndDate) {
     jhEndDate.disabled = false; jhEndDate.style.opacity = "1";
   }
 };
@@ -2126,7 +2125,7 @@ window.closeJobHistoryModal = () => toggleModal(jobHistoryModalObj, null, false)
 
 if (jhCurrentEmp) {
   jhCurrentEmp.addEventListener("change", (e) => {
-    if(!jhEndDate) return;
+    if (!jhEndDate) return;
     if (e.target.checked) {
       jhEndDate.value = "Present";
       jhEndDate.disabled = true;
@@ -2141,7 +2140,7 @@ if (jhCurrentEmp) {
 
 function renderJobHistory() {
   const p = getActivePerson();
-  if(!p) return;
+  if (!p) return;
   renderTable(p.jobHistory, "jhTableBody", "No job history found.", 5, (jh, idx) => `
     <tr>
       <td>${jh.company}</td><td>${jh.position}</td><td>${jh.fromDate} - ${jh.endDate}</td>
@@ -2150,7 +2149,7 @@ function renderJobHistory() {
     </tr>`);
 }
 
-window.saveJobHistory = function() {
+window.saveJobHistory = function () {
   const company = document.getElementById("jhCompany").value.trim();
   const position = document.getElementById("jhPosition").value.trim();
   const fromDate = document.getElementById("jhFromDate").value.trim();
@@ -2169,7 +2168,7 @@ window.saveJobHistory = function() {
   window.closeJobHistoryModal();
 };
 
-window.deleteJobHistory = function(idx) {
+window.deleteJobHistory = function (idx) {
   const p = getActivePerson();
   p.jobHistory.splice(idx, 1);
   renderJobHistory();
@@ -2181,7 +2180,7 @@ window.closeExperienceModal = () => toggleModal(experienceModalObj, null, false)
 
 function renderExperience() {
   const p = getActivePerson();
-  if(!p) return;
+  if (!p) return;
   renderTable(p.experience, "expTableBody", "No experience records found.", 3, (exp, idx) => `
     <tr>
       <td><strong>${exp.method}</strong></td><td>${exp.hours} hrs</td>
@@ -2189,7 +2188,7 @@ function renderExperience() {
     </tr>`);
 }
 
-window.saveExperience = function() {
+window.saveExperience = function () {
   const method = document.getElementById("expMethod").value.trim();
   const hours = document.getElementById("expHours").value.trim();
 
@@ -2204,7 +2203,7 @@ window.saveExperience = function() {
   window.closeExperienceModal();
 };
 
-window.deleteExperience = function(idx) {
+window.deleteExperience = function (idx) {
   const p = getActivePerson();
   p.experience.splice(idx, 1);
   renderExperience();
@@ -2218,36 +2217,36 @@ function renderTraining() {
   console.log("Render Training called.");
 }
 
-window.saveTraining = function() {
+window.saveTraining = function () {
   window.closeTrainingModal();
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Menu logic handling for Personnel
-    const menuButtons = document.querySelectorAll(".menu-btn");
-    const pageCompanySetup = document.getElementById("page-company-setup");
-    const pageCompanyManagement = document.getElementById("page-company-management");
-    const pagePersonnel = document.getElementById("page-personnel");
-    const companyPageTitle = document.getElementById("companyPageTitle");
-  
-    menuButtons.forEach((button) => {
-      button.addEventListener("click", function () {
-        const menuName = this.getAttribute("data-menu");
-        if (menuName === "Personnel") {
-            if (pageCompanySetup) pageCompanySetup.style.display = "none";
-            if (pageCompanyManagement) pageCompanyManagement.style.display = "none";
-            if (pagePersonnel) pagePersonnel.style.display = "block";
-            if (companyPageTitle) companyPageTitle.textContent = "Personnel Information";
-            
-            // Re-render when selected
-            setTimeout(() => {
-                renderList();
-                renderDetails();
-            }, 50);
-        } else {
-            if (pagePersonnel) pagePersonnel.style.display = "none";
-            // Check other pages are handled correctly by the existing code
-        }
-      });
+  // Menu logic handling for Personnel
+  const menuButtons = document.querySelectorAll(".menu-btn");
+  const pageCompanySetup = document.getElementById("page-company-setup");
+  const pageCompanyManagement = document.getElementById("page-company-management");
+  const pagePersonnel = document.getElementById("page-personnel");
+  const companyPageTitle = document.getElementById("companyPageTitle");
+
+  menuButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      const menuName = this.getAttribute("data-menu");
+      if (menuName === "Personnel") {
+        if (pageCompanySetup) pageCompanySetup.style.display = "none";
+        if (pageCompanyManagement) pageCompanyManagement.style.display = "none";
+        if (pagePersonnel) pagePersonnel.style.display = "block";
+        if (companyPageTitle) companyPageTitle.textContent = "Personnel Information";
+
+        // Re-render when selected
+        setTimeout(() => {
+          renderList();
+          renderDetails();
+        }, 50);
+      } else {
+        if (pagePersonnel) pagePersonnel.style.display = "none";
+        // Check other pages are handled correctly by the existing code
+      }
     });
+  });
 });

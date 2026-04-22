@@ -3,7 +3,7 @@ let personnel = [
     id: 3,
     fName: "dharani",
     lName: "gedela",
-    empId: "15",
+    empId: "111",
     email: "dharani@crop",
     phone: "-",
     dept: "",
@@ -89,7 +89,7 @@ function renderDetails() {
   };
   Object.keys(fields).forEach(id => {
     const el = document.getElementById(id);
-    if(el) el.textContent = fields[id];
+    if (el) el.textContent = fields[id];
   });
 
   renderEducation();
@@ -135,19 +135,19 @@ function closePersonnelModal() {
 }
 
 // Event Listeners
-if(btnAddTop) btnAddTop.addEventListener("click", () => openPersonnelModal("add"));
-if(btnEdit) btnEdit.addEventListener("click", () => openPersonnelModal("edit"));
+if (btnAddTop) btnAddTop.addEventListener("click", () => openPersonnelModal("add"));
+if (btnEdit) btnEdit.addEventListener("click", () => openPersonnelModal("edit"));
 
-if(btnPersonnelModalClose) btnPersonnelModalClose.addEventListener("click", closePersonnelModal);
-if(btnModalCancel) btnModalCancel.addEventListener("click", closePersonnelModal);
+if (btnPersonnelModalClose) btnPersonnelModalClose.addEventListener("click", closePersonnelModal);
+if (btnModalCancel) btnModalCancel.addEventListener("click", closePersonnelModal);
 
-if(btnChoosePhoto) {
+if (btnChoosePhoto) {
   btnChoosePhoto.addEventListener("click", () => {
     profilePhotoInput.click();
   });
 }
 
-if(profilePhotoInput) {
+if (profilePhotoInput) {
   profilePhotoInput.addEventListener("change", (e) => {
     if (e.target.files && e.target.files.length > 0) {
       photoFileName.textContent = e.target.files[0].name;
@@ -157,7 +157,7 @@ if(profilePhotoInput) {
   });
 }
 
-if(personnelModalOverlay) {
+if (personnelModalOverlay) {
   personnelModalOverlay.addEventListener("click", (e) => {
     // Do nothing
   });
@@ -167,7 +167,7 @@ if(personnelModalOverlay) {
   });
 }
 
-if(btnModalSave) {
+if (btnModalSave) {
   btnModalSave.addEventListener("click", () => {
     if (!personnelFormObj.reportValidity()) return;
 
@@ -197,7 +197,7 @@ if(btnModalSave) {
       // Add new
       const newId = personnel.length ? Math.max(...personnel.map(x => x.id)) + 1 : 1;
       personnel.push({ id: newId, ...pData });
-      currentId = newId; 
+      currentId = newId;
     }
 
     closePersonnelModal();
@@ -206,7 +206,7 @@ if(btnModalSave) {
   });
 }
 
-if(personnelFormObj) {
+if (personnelFormObj) {
   personnelFormObj.addEventListener("submit", (e) => {
     e.preventDefault();
     btnModalSave.click();
@@ -243,7 +243,7 @@ tabBtns.forEach(btn => {
 
     const personnelTabs = document.querySelectorAll("#page-personnel .tab-btn");
     const personnelContents = document.querySelectorAll("#page-personnel .tab-content");
-    
+
     personnelTabs.forEach(b => b.classList.remove("active"));
     personnelContents.forEach(c => c.classList.add("hidden"));
 
@@ -252,12 +252,12 @@ tabBtns.forEach(btn => {
 
     const tabId = btn.getAttribute("data-tab");
     const targetContent = document.getElementById("tab-" + tabId);
-    if(targetContent) targetContent.classList.remove("hidden");
+    if (targetContent) targetContent.classList.remove("hidden");
 
     if (tabId === 'personal') {
-      if(tabContentTitle) tabContentTitle.textContent = "Personal Information";
+      if (tabContentTitle) tabContentTitle.textContent = "Personal Information";
     } else {
-      if(tabContentTitle) tabContentTitle.textContent = btn.textContent;
+      if (tabContentTitle) tabContentTitle.textContent = btn.textContent;
     }
   });
 });
@@ -274,7 +274,7 @@ subTabBtns.forEach(btn => {
   btn.addEventListener("click", () => {
     subTabBtns.forEach(b => b.classList.remove("active"));
     subTabContents.forEach(c => c.classList.add("hidden"));
-    
+
     btn.classList.add("active");
     const subTabId = btn.getAttribute("data-subtab");
     document.getElementById("subtab-" + subTabId).classList.remove("hidden");
@@ -309,10 +309,10 @@ function renderTable(data, tbodyId, emptyMsg, colCount, rowHTML) {
 }
 
 const toggleModal = (modal, formId, show) => {
-  if(!modal) return;
-  if(show && formId) {
+  if (!modal) return;
+  if (show && formId) {
     const formEl = document.getElementById(formId);
-    if(formEl) formEl.reset();
+    if (formEl) formEl.reset();
   }
   modal.classList[show ? 'remove' : 'add']("hidden");
 };
@@ -323,7 +323,7 @@ window.closeEducationModal = () => toggleModal(educationModalObj, null, false);
 
 function renderEducation() {
   const p = getActivePerson();
-  if(!p) return;
+  if (!p) return;
   renderTable(p.education, "eduTableBody", "No education records found.", 5, (edu, idx) => `
     <tr>
       <td>${edu.degree}</td><td>${edu.school}</td><td>${edu.year}</td>
@@ -332,11 +332,11 @@ function renderEducation() {
     </tr>`);
 }
 
-window.saveEducation = function() {
+window.saveEducation = function () {
   const degree = document.getElementById("eduDegree").value.trim();
   const school = document.getElementById("eduSchool").value.trim();
   const year = document.getElementById("eduYear").value.trim();
-  
+
   if (!degree || !school || !year) {
     alert("Please fill all required fields (*).");
     return;
@@ -348,7 +348,7 @@ window.saveEducation = function() {
   window.closeEducationModal();
 };
 
-window.deleteEducation = function(idx) {
+window.deleteEducation = function (idx) {
   const p = getActivePerson();
   p.education.splice(idx, 1);
   renderEducation();
@@ -358,9 +358,9 @@ const jobHistoryModalObj = document.getElementById("jobHistoryModal");
 const jhCurrentEmp = document.getElementById("jhCurrentEmp");
 const jhEndDate = document.getElementById("jhEndDate");
 
-window.openJobHistoryModal = function() {
+window.openJobHistoryModal = function () {
   toggleModal(jobHistoryModalObj, "jobHistoryForm", true);
-  if(jhEndDate) {
+  if (jhEndDate) {
     jhEndDate.disabled = false; jhEndDate.style.opacity = "1";
   }
 };
@@ -368,7 +368,7 @@ window.closeJobHistoryModal = () => toggleModal(jobHistoryModalObj, null, false)
 
 if (jhCurrentEmp) {
   jhCurrentEmp.addEventListener("change", (e) => {
-    if(!jhEndDate) return;
+    if (!jhEndDate) return;
     if (e.target.checked) {
       jhEndDate.value = "Present";
       jhEndDate.disabled = true;
@@ -383,7 +383,7 @@ if (jhCurrentEmp) {
 
 function renderJobHistory() {
   const p = getActivePerson();
-  if(!p) return;
+  if (!p) return;
   renderTable(p.jobHistory, "jhTableBody", "No job history found.", 5, (jh, idx) => `
     <tr>
       <td>${jh.company}</td><td>${jh.position}</td><td>${jh.fromDate} - ${jh.endDate}</td>
@@ -392,7 +392,7 @@ function renderJobHistory() {
     </tr>`);
 }
 
-window.saveJobHistory = function() {
+window.saveJobHistory = function () {
   const company = document.getElementById("jhCompany").value.trim();
   const position = document.getElementById("jhPosition").value.trim();
   const fromDate = document.getElementById("jhFromDate").value.trim();
@@ -411,7 +411,7 @@ window.saveJobHistory = function() {
   window.closeJobHistoryModal();
 };
 
-window.deleteJobHistory = function(idx) {
+window.deleteJobHistory = function (idx) {
   const p = getActivePerson();
   p.jobHistory.splice(idx, 1);
   renderJobHistory();
@@ -423,7 +423,7 @@ window.closeExperienceModal = () => toggleModal(experienceModalObj, null, false)
 
 function renderExperience() {
   const p = getActivePerson();
-  if(!p) return;
+  if (!p) return;
   renderTable(p.experience, "expTableBody", "No experience records found.", 3, (exp, idx) => `
     <tr>
       <td><strong>${exp.method}</strong></td><td>${exp.hours} hrs</td>
@@ -431,7 +431,7 @@ function renderExperience() {
     </tr>`);
 }
 
-window.saveExperience = function() {
+window.saveExperience = function () {
   const method = document.getElementById("expMethod").value.trim();
   const hours = document.getElementById("expHours").value.trim();
 
@@ -446,7 +446,7 @@ window.saveExperience = function() {
   window.closeExperienceModal();
 };
 
-window.deleteExperience = function(idx) {
+window.deleteExperience = function (idx) {
   const p = getActivePerson();
   p.experience.splice(idx, 1);
   renderExperience();
@@ -460,36 +460,36 @@ function renderTraining() {
   console.log("Render Training called.");
 }
 
-window.saveTraining = function() {
+window.saveTraining = function () {
   window.closeTrainingModal();
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Menu logic handling for Personnel
-    const menuButtons = document.querySelectorAll(".menu-btn");
-    const pageCompanySetup = document.getElementById("page-company-setup");
-    const pageCompanyManagement = document.getElementById("page-company-management");
-    const pagePersonnel = document.getElementById("page-personnel");
-    const companyPageTitle = document.getElementById("companyPageTitle");
-  
-    menuButtons.forEach((button) => {
-      button.addEventListener("click", function () {
-        const menuName = this.getAttribute("data-menu");
-        if (menuName === "Personnel") {
-            if (pageCompanySetup) pageCompanySetup.style.display = "none";
-            if (pageCompanyManagement) pageCompanyManagement.style.display = "none";
-            if (pagePersonnel) pagePersonnel.style.display = "block";
-            if (companyPageTitle) companyPageTitle.textContent = "Personnel Information";
-            
-            // Re-render when selected
-            setTimeout(() => {
-                renderList();
-                renderDetails();
-            }, 50);
-        } else {
-            if (pagePersonnel) pagePersonnel.style.display = "none";
-            // Check other pages are handled correctly by the existing code
-        }
-      });
+  // Menu logic handling for Personnel
+  const menuButtons = document.querySelectorAll(".menu-btn");
+  const pageCompanySetup = document.getElementById("page-company-setup");
+  const pageCompanyManagement = document.getElementById("page-company-management");
+  const pagePersonnel = document.getElementById("page-personnel");
+  const companyPageTitle = document.getElementById("companyPageTitle");
+
+  menuButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      const menuName = this.getAttribute("data-menu");
+      if (menuName === "Personnel") {
+        if (pageCompanySetup) pageCompanySetup.style.display = "none";
+        if (pageCompanyManagement) pageCompanyManagement.style.display = "none";
+        if (pagePersonnel) pagePersonnel.style.display = "block";
+        if (companyPageTitle) companyPageTitle.textContent = "Personnel Information";
+
+        // Re-render when selected
+        setTimeout(() => {
+          renderList();
+          renderDetails();
+        }, 50);
+      } else {
+        if (pagePersonnel) pagePersonnel.style.display = "none";
+        // Check other pages are handled correctly by the existing code
+      }
     });
+  });
 });
